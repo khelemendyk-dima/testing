@@ -1,4 +1,4 @@
-package com.my.testing.controller.actions.implementation;
+package com.my.testing.controller.actions.implementation.base;
 
 import com.my.testing.controller.actions.Action;
 import jakarta.servlet.http.HttpServletRequest;
