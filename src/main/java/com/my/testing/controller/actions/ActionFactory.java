@@ -1,6 +1,9 @@
 package com.my.testing.controller.actions;
 
-import com.my.testing.controller.actions.implementation.*;
+import com.my.testing.controller.actions.implementation.admin.EditUserByAdminAction;
+import com.my.testing.controller.actions.implementation.admin.FindUserAction;
+import com.my.testing.controller.actions.implementation.admin.SetRoleAction;
+import com.my.testing.controller.actions.implementation.base.*;
 import com.my.testing.controller.context.AppContext;
 
 import java.util.*;
@@ -19,6 +22,9 @@ public final class ActionFactory {
         ACTION_MAP.put(SIGN_OUT_ACTION, new SignOutAction());
         ACTION_MAP.put(EDIT_PROFILE_ACTION, new EditProfileAction(APP_CONTEXT));
         ACTION_MAP.put(CHANGE_PASSWORD_ACTION, new ChangePasswordAction(APP_CONTEXT));
+        ACTION_MAP.put(FIND_USER_ACTION, new FindUserAction(APP_CONTEXT));
+        ACTION_MAP.put(SET_ROLE_ACTION, new SetRoleAction(APP_CONTEXT));
+        ACTION_MAP.put(EDIT_USER_BY_ADMIN_ACTION, new EditUserByAdminAction(APP_CONTEXT));
     }
 
     private ActionFactory() {}

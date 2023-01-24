@@ -4,6 +4,7 @@ import com.my.testing.exceptions.DAOException;
 import com.my.testing.model.connection.DataSource;
 import com.my.testing.model.dao.UserDAO;
 import com.my.testing.model.entities.User;
+import com.my.testing.model.entities.role.Role;
 
 import java.sql.*;
 import java.util.*;
@@ -94,6 +95,19 @@ public class MysqlUserDAO implements UserDAO {
             int k = 0;
             preparedStatement.setString(++k, user.getPassword());
             preparedStatement.setLong(++k, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    @Override
+    public void setUserRole(String email, Role role) throws DAOException {
+        try (Connection connection = DataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SET_USER_ROLE)) {
+            int k = 0;
+            preparedStatement.setInt(++k, role.getValue());
+            preparedStatement.setString(++k, email);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException(e);
