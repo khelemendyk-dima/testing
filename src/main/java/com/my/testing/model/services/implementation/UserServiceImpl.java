@@ -4,6 +4,7 @@ import com.my.testing.dto.UserDTO;
 import com.my.testing.exceptions.*;
 import com.my.testing.model.dao.UserDAO;
 import com.my.testing.model.entities.User;
+import com.my.testing.model.entities.role.Role;
 import com.my.testing.model.services.UserService;
 
 import java.util.*;
@@ -49,6 +50,29 @@ public class UserServiceImpl implements UserService {
         }
 
         return userDTO;
+    }
+
+    @Override
+    public UserDTO getByEmail(String email) throws ServiceException {
+        validateEmail(email);
+        UserDTO userDTO;
+        try {
+            User user = userDAO.getByEmail(email).orElseThrow(NoSuchUserException::new);
+            userDTO = convertUserToDTO(user);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return userDTO;
+    }
+
+    @Override
+    public void setRole(String email, int roleId) throws ServiceException {
+        try {
+            Role role = Role.getRole(roleId);
+            userDAO.setUserRole(email, role);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override

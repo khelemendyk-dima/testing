@@ -9,6 +9,8 @@ public final class Pages {
     public static final String PROFILE_PAGE = "profile.jsp";
     public static final String EDIT_PROFILE_PAGE = "editProfile.jsp";
     public static final String CHANGE_PASSWORD_PAGE = "changePassword.jsp";
-
+    public static final String FIND_USER_PAGE = "findUser.jsp";
+    public static final String USER_BY_EMAIL_PAGE = "userByEmail.jsp";
+    public static final String EDIT_USER_BY_ADMIN_PAGE = "editUserByAdmin.jsp";
     private Pages() {}
 }
