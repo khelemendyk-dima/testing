@@ -9,7 +9,7 @@
 <html lang="${sessionScope.locale}">
 
 <head>
-    <title>TestHub. <fmt:message key="editProfile"/></title>
+    <title>TestHub. <fmt:message key="edit.profile"/></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -35,7 +35,7 @@
                                 sessionScope.loggedUser.surname : requestScope.user.surname}"/>
 
 
-            <h3 class="mb-4"><fmt:message key="editProfile"/></h3>
+            <h3 class="mb-4"><fmt:message key="edit.profile"/></h3>
 
             <c:if test="${not empty requestScope.message}">
                 <span class="text-success"><fmt:message key="${requestScope.message}"/></span>
@@ -75,7 +75,7 @@
             <button class="w-100 btn btn-lg btn-primary mb-4 mt-4" type="submit"><fmt:message key="submit"/></button>
         </form>
         <p class="m-0">
-            <a href="changePassword.jsp" class="link-dark"><fmt:message key="changePass"/></a>
+            <a href="changePassword.jsp" class="link-dark"><fmt:message key="change.pass"/></a>
         </p>
     </div>
 

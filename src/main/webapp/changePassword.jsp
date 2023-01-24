@@ -8,7 +8,7 @@
 <html lang="${sessionScope.locale}">
 
 <head>
-    <title>TestHub. <fmt:message key="changePass"/></title>
+    <title>TestHub. <fmt:message key="change.pass"/></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -27,7 +27,7 @@
         <form action="controller" method="POST">
             <input type="hidden" name="action" value="change-password">
 
-            <h3 class="mb-4"><fmt:message key="changePass"/></h3>
+            <h3 class="mb-4"><fmt:message key="change.pass"/></h3>
 
             <c:if test="${not empty requestScope.message}">
                 <span class="text-success"><fmt:message key="${requestScope.message}"/></span>
@@ -35,7 +35,7 @@
             <div class="form-floating">
                 <input class="form-control" type="password" name="old-password" id="old-password"
                        placeholder="Password" required>
-                <label for="old-password"><fmt:message key="oldPass"/></label>
+                <label for="old-password"><fmt:message key="old.pass"/></label>
                 <c:if test="${not empty requestScope.error}">
                     <span class="text-danger"><fmt:message key="${requestScope.error}"/></span>
                 </c:if>
@@ -45,25 +45,25 @@
                 <input class="form-control" type="password" name="password" id="password"
                        placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$"
                        title="<fmt:message key="password.requirements"/>" required>
-                <label for="password"><fmt:message key="newPass"/></label>
+                <label for="password"><fmt:message key="new.pass"/></label>
             </div>
 
             <div class="form-floating">
                 <input class="form-control" type="password" name="confirm-password" id="confirm-password"
                        placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$"
                        title="<fmt:message key="password.requirements"/>" required>
-                <label for="confirm-password"><fmt:message key="confirmPass"/></label>
+                <label for="confirm-password"><fmt:message key="confirm.pass"/></label>
             </div>
 
             <div class="checkbox text-start mt-1 mx-3 mb-1">
                 <input class="form-check-input" type="checkbox" id="flexCheckDefault"
                        onclick="showPass('old-password'); showPass('password'); showPass('confirm-password');">
                 <label class="form-check-label" for="flexCheckDefault">
-                    <fmt:message key="showPass"/>
+                    <fmt:message key="show.pass"/>
                 </label>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary mb-4 mt-4" type="submit"><fmt:message key="changePass"/></button>
+            <button class="w-100 btn btn-lg btn-primary mb-4 mt-4" type="submit"><fmt:message key="change.pass"/></button>
         </form>
     </div>
 

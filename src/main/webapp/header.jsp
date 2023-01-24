@@ -14,7 +14,7 @@
 
     <ul class="nav col-md-auto mb-md-0">
         <li><a href="index.jsp" class="nav-link px-2 link-dark"><fmt:message key="home"/></a></li>
-        <li><a href="aboutUs.jsp" class="nav-link px-2 link-dark"><fmt:message key="aboutUs"/></a></li>
+        <li><a href="aboutUs.jsp" class="nav-link px-2 link-dark"><fmt:message key="about"/></a></li>
         <li><a href="contacts.jsp" class="nav-link px-2 link-dark"><fmt:message key="contacts"/></a></li>
     </ul>
 
@@ -26,13 +26,13 @@
                         <fmt:message key="tests"/>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><fmt:message key="solveTests"/></a></li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="createTest"/></a></li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="findTest"/></a></li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="viewResults"/></a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="solve.tests"/></a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="create.test"/></a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="find.test"/></a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="view.results"/></a></li>
                     </ul>
                 </div>
-                <a href="#" class="nav-link link-dark px-2 my-auto"><fmt:message key="findStudent"/></a>
+                <a href="findUser.jsp" class="nav-link link-dark px-2 my-auto"><fmt:message key="find.student"/></a>
                 <a href="profile.jsp" class="nav-link link-dark px-2 my-auto border-end"><fmt:message key="profile"/></a>
             </c:when>
             <c:when test="${sessionScope.role eq 'STUDENT'}">
@@ -41,21 +41,21 @@
                         <fmt:message key="tests"/>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><fmt:message key="solveTests"/></a></li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="viewResults"/></a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="solve.tests"/></a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="view.results"/></a></li>
                     </ul>
                 </div>
                 <a href="profile.jsp" class="nav-link link-dark px-2 my-auto border-end"><fmt:message key="profile"/></a>
             </c:when>
             <c:when test="${sessionScope.role eq 'BLOCKED'}">
-                <p class="text-danger my-auto px-2"><fmt:message key="blockedAccount"/></p>
+                <p class="text-danger my-auto px-2"><fmt:message key="blocked.account"/></p>
                 <a href="profile.jsp" class="nav-link link-dark px-2 my-auto border-end"><fmt:message key="profile"/></a>
             </c:when>
         </c:choose>
 
         <c:if test="${sessionScope.loggedUser eq null}">
-            <a href="signIn.jsp" class="btn btn-outline-primary me-2" role="button"><fmt:message key="signIn"/></a>
-            <a href="signUp.jsp" class="btn btn-primary me-3" role="button"><fmt:message key="signUp"/></a>
+            <a href="signIn.jsp" class="btn btn-outline-primary me-2" role="button"><fmt:message key="sign.in"/></a>
+            <a href="signUp.jsp" class="btn btn-primary me-3" role="button"><fmt:message key="sign.up"/></a>
         </c:if>
 
         <div class="my-auto ms-1">

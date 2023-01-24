@@ -31,7 +31,7 @@
     <span class="fw-bold">Exception: </span>
     <span>${pageContext.errorData.throwable}</span>
     <br>
-    <a href="index.jsp" class="btn btn-primary mt-2" role="button"><fmt:message key="toHome"/></a>
+    <a href="index.jsp" class="btn btn-primary mt-2" role="button"><fmt:message key="to.home"/></a>
 
 </div>
 

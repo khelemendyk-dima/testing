@@ -9,7 +9,7 @@
 <html lang="${sessionScope.locale}">
 
 <head>
-    <title>TestHub. <fmt:message key="signIn"/></title>
+    <title>TestHub. <fmt:message key="sign.in"/></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -29,7 +29,7 @@
             <input type="hidden" name="action" value="sign-in">
             <c:set var="error" value="${requestScope.error}"/>
 
-            <h3 class="mb-4"><fmt:message key="signIn.title"/></h3>
+            <h3 class="mb-4"><fmt:message key="sign.in.title"/></h3>
 
             <c:if test="${not empty requestScope.message}">
                 <span class="text-success"><fmt:message key="${requestScope.message}"/></span>
@@ -54,13 +54,13 @@
 
             <div class="checkbox text-start mx-3 my-1">
                 <input class="form-check-input" type="checkbox" onclick="showPass('password')" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault"><fmt:message key="showPass"/></label>
+                <label class="form-check-label" for="flexCheckDefault"><fmt:message key="show.pass"/></label>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary my-4" type="submit"><fmt:message key="signIn"/></button>
+            <button class="w-100 btn btn-lg btn-primary my-4" type="submit"><fmt:message key="sign.in"/></button>
             <p class="mt-1">
-                <fmt:message key="noAccount"/>
-                <a href="signUp.jsp" class="link-dark"><fmt:message key="signUp"/></a>
+                <fmt:message key="no.account"/>
+                <a href="signUp.jsp" class="link-dark"><fmt:message key="sign.up"/></a>
             </p>
         </form>
     </div>

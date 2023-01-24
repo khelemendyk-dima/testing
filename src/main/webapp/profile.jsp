@@ -21,7 +21,7 @@
 
     <jsp:include page="header.jsp"/>
 
-    <h1 class="display-5 fw-bold my-5"><fmt:message key="profileInfo"/></h1>
+    <h1 class="display-5 fw-bold my-5"><fmt:message key="profile.info"/></h1>
     <div class="ms-4 fs-5">
         <p class="fw-bold fs-4 mb-0"><fmt:message key="email"/></p>
         <p>${sessionScope.loggedUser.email}</p>
@@ -29,9 +29,9 @@
         <p>${sessionScope.loggedUser.name}</p>
         <p class="fw-bold fs-4 mb-0"><fmt:message key="surname"/></p>
         <p>${sessionScope.loggedUser.surname}</p>
-        <a href="editProfile.jsp" class="btn btn-secondary mt-2"><fmt:message key="editProfile"/></a><br>
-        <a href="#" class="btn btn-secondary mt-2"><fmt:message key="viewResults"/></a><br>
-        <a href="controller?action=sign-out" class="btn btn-danger mt-2" role="button"><fmt:message key="signOut"/></a>
+        <a href="editProfile.jsp" class="btn btn-secondary mt-2"><fmt:message key="edit.profile"/></a><br>
+        <a href="#" class="btn btn-secondary mt-2"><fmt:message key="view.results"/></a><br>
+        <a href="controller?action=sign-out" class="btn btn-danger mt-2" role="button"><fmt:message key="sign.out"/></a>
     </div>
 
     <jsp:include page="footer.jsp"/>
