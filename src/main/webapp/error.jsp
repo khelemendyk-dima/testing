@@ -19,18 +19,6 @@
 <div class="container">
 
     <h3><fmt:message key="error"/></h3>
-    <span class="fw-bold">Request from </span>
-    <span>${pageContext.errorData.requestURI} is failed</span>
-    <br>
-    <span class="fw-bold">Servlet name or type: </span>
-    <span>${pageContext.errorData.servletName}</span>
-    <br>
-    <span class="fw-bold">Status code: </span>
-    <span>${pageContext.errorData.statusCode}</span>
-    <br>
-    <span class="fw-bold">Exception: </span>
-    <span>${pageContext.errorData.throwable}</span>
-    <br>
     <a href="index.jsp" class="btn btn-primary mt-2" role="button"><fmt:message key="to.home"/></a>
 
 </div>
