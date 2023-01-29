@@ -7,13 +7,13 @@ import java.io.Serializable;
 
 @Data
 @Builder
-public class User implements Serializable {
+public class Test implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     private long id;
-    private String email;
-    private transient String password;
     private String name;
-    private String surname;
-    private int roleId;
+    private int subjectId;
+    private int difficultyId;
+    private int duration;
+    private int numberOfQueries;
 }

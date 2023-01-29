@@ -1,4 +1,4 @@
-package com.my.testing.model.entities.role;
+package com.my.testing.model.entities.enums;
 
 public enum Role { ADMIN(1), STUDENT(2), BLOCKED(3);
     private final int value;
