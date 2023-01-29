@@ -1,8 +1,9 @@
 package com.my.testing.utils;
 
-import com.my.testing.dto.UserDTO;
-import com.my.testing.model.entities.User;
-import com.my.testing.model.entities.role.Role;
+import com.my.testing.dto.*;
+import com.my.testing.model.entities.*;
+import com.my.testing.model.entities.enums.*;
+import org.apache.commons.text.WordUtils;
 
 public final class ConvertorUtil {
 
@@ -26,4 +27,27 @@ public final class ConvertorUtil {
                 .role(String.valueOf(Role.getRole(user.getRoleId())))
                 .build();
     }
+
+    public static Test convertDTOToTest(TestDTO testDTO) {
+        return Test.builder()
+                .id(testDTO.getId())
+                .name(testDTO.getName())
+                .subjectId(Subject.valueOf(testDTO.getSubject()).getValue())
+                .difficultyId(Difficulty.valueOf(testDTO.getDifficulty()).getValue())
+                .duration(testDTO.getDuration())
+                .build();
+    }
+
+    public static TestDTO convertTestToTDO(Test test) {
+        return TestDTO.builder()
+                .id(test.getId())
+                .name(test.getName())
+                .subject(WordUtils.capitalizeFully(String.valueOf(Subject.getSubject(test.getSubjectId()))))
+                .difficulty(WordUtils.capitalizeFully(String.valueOf(Difficulty.getDifficulty(test.getDifficultyId()))))
+                .duration(test.getDuration())
+                .numberOfQueries(test.getNumberOfQueries())
+                .build();
+    }
+
+
 }

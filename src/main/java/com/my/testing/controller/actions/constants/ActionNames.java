@@ -10,6 +10,8 @@ public final class ActionNames {
     public static final String FIND_USER_ACTION = "find-user";
     public static final String SET_ROLE_ACTION = "set-role";
     public static final String EDIT_USER_BY_ADMIN_ACTION = "edit-user-by-admin";
+    public static final String CREATE_TEST_ACTION = "create-test";
+    public static final String VIEW_TESTS_ACTION = "view-tests";
 
     private ActionNames() {}
 }

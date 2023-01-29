@@ -1,5 +1,6 @@
 package com.my.testing.controller.actions;
 
+import com.my.testing.controller.actions.implementation.admin.CreateTestAction;
 import com.my.testing.controller.actions.implementation.admin.EditUserByAdminAction;
 import com.my.testing.controller.actions.implementation.admin.FindUserAction;
 import com.my.testing.controller.actions.implementation.admin.SetRoleAction;
@@ -25,6 +26,8 @@ public final class ActionFactory {
         ACTION_MAP.put(FIND_USER_ACTION, new FindUserAction(APP_CONTEXT));
         ACTION_MAP.put(SET_ROLE_ACTION, new SetRoleAction(APP_CONTEXT));
         ACTION_MAP.put(EDIT_USER_BY_ADMIN_ACTION, new EditUserByAdminAction(APP_CONTEXT));
+        ACTION_MAP.put(CREATE_TEST_ACTION, new CreateTestAction(APP_CONTEXT));
+        ACTION_MAP.put(VIEW_TESTS_ACTION, new ViewTestsAction(APP_CONTEXT));
     }
 
     private ActionFactory() {}

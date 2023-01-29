@@ -12,5 +12,8 @@ public final class Pages {
     public static final String FIND_USER_PAGE = "findUser.jsp";
     public static final String USER_BY_EMAIL_PAGE = "userByEmail.jsp";
     public static final String EDIT_USER_BY_ADMIN_PAGE = "editUserByAdmin.jsp";
+    public static final String VIEW_TEST_PAGE = "viewTest.jsp";
+    public static final String VIEW_TESTS_PAGE = "viewTests.jsp";
+    public static final String CREATE_TEST_PAGE = "createTest.jsp";
     private Pages() {}
 }
