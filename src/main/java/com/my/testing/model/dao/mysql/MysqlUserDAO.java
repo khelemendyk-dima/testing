@@ -4,7 +4,7 @@ import com.my.testing.exceptions.DAOException;
 import com.my.testing.model.connection.DataSource;
 import com.my.testing.model.dao.UserDAO;
 import com.my.testing.model.entities.User;
-import com.my.testing.model.entities.role.Role;
+import com.my.testing.model.entities.enums.Role;
 
 import java.sql.*;
 import java.util.*;

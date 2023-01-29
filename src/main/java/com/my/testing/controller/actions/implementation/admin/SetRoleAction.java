@@ -3,7 +3,7 @@ package com.my.testing.controller.actions.implementation.admin;
 import com.my.testing.controller.actions.Action;
 import com.my.testing.controller.context.AppContext;
 import com.my.testing.exceptions.ServiceException;
-import com.my.testing.model.entities.role.Role;
+import com.my.testing.model.entities.enums.Role;
 import com.my.testing.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 

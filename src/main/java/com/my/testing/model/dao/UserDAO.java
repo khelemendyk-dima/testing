@@ -2,7 +2,7 @@ package com.my.testing.model.dao;
 
 import com.my.testing.exceptions.DAOException;
 import com.my.testing.model.entities.User;
-import com.my.testing.model.entities.role.Role;
+import com.my.testing.model.entities.enums.Role;
 
 import java.util.Optional;
 

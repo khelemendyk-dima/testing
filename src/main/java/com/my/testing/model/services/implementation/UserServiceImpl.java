@@ -4,15 +4,14 @@ import com.my.testing.dto.UserDTO;
 import com.my.testing.exceptions.*;
 import com.my.testing.model.dao.UserDAO;
 import com.my.testing.model.entities.User;
-import com.my.testing.model.entities.role.Role;
+import com.my.testing.model.entities.enums.Role;
 import com.my.testing.model.services.UserService;
 
 import java.util.*;
 
 import static com.my.testing.exceptions.constants.Message.*;
 import static com.my.testing.utils.ConvertorUtil.*;
-import static com.my.testing.utils.PasswordHashUtil.encode;
-import static com.my.testing.utils.PasswordHashUtil.verify;
+import static com.my.testing.utils.PasswordHashUtil.*;
 import static com.my.testing.utils.ValidatorUtil.*;
 
 public class UserServiceImpl implements UserService {
