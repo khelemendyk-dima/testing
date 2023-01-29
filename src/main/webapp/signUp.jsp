@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/favicon.ico">
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/showPass.js"></script>
@@ -20,9 +21,9 @@
 
 <body>
 
-<div class="container">
+<jsp:include page="header.jsp"/>
 
-    <jsp:include page="header.jsp"/>
+<div class="container">
 
     <div class="text-center mx-auto" style="max-width: 330px;">
         <form action="controller" method="POST">
@@ -85,15 +86,15 @@
 
             <button class="w-100 btn btn-lg btn-primary mb-4 mt-4" type="submit"><fmt:message key="sign.up"/></button>
         </form>
-        <p class="m-0">
+        <p class="m-0 mb-3">
             <fmt:message key="have.account"/>
             <a href="signIn.jsp" class="link-dark"><fmt:message key="sign.in"/></a>
         </p>
     </div>
 
-    <jsp:include page="footer.jsp"/>
-
 </div>
+
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

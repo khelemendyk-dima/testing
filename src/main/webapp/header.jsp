@@ -4,7 +4,7 @@
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
-<header class="d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-4 border-bottom sticky-top bg-white" >
+<header class="container d-flex flex-wrap align-items-center justify-content-md-between py-3 mb-4 border-bottom fixed-top bg-white" >
     <span class="col-md-4 d-flex">
         <a href="index.jsp" class="d-flex text-dark text-decoration-none fs-4 fw-bold">
           <span class="">Test</span>
@@ -26,8 +26,8 @@
                         <fmt:message key="tests"/>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><fmt:message key="solve.tests"/></a></li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="create.test"/></a></li>
+                        <li><a class="dropdown-item" href="controller?action=view-tests"><fmt:message key="solve.tests"/></a></li>
+                        <li><a class="dropdown-item" href="createTest.jsp"><fmt:message key="create.test"/></a></li>
                         <li><a class="dropdown-item" href="#"><fmt:message key="find.test"/></a></li>
                         <li><a class="dropdown-item" href="#"><fmt:message key="view.results"/></a></li>
                     </ul>

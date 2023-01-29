@@ -12,7 +12,7 @@
     </symbol>
 </svg>
 
-<footer class="d-flex justify-content-between py-3 border-top fixed-bottom container bg-white">
+<footer class="container d-flex justify-content-between border-top bg-white mt-auto py-3">
     <div class="d-flex">
         <span class="me-2">
           <a href="index.jsp" class="d-flex text-dark text-decoration-none fs-6 fw-bold">

@@ -12,15 +12,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/favicon.ico">
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
 
-<div class="container">
+<jsp:include page="header.jsp"/>
 
-    <jsp:include page="header.jsp"/>
+<div class="container">
 
     <div class="text-center mx-auto" style="max-width: 330px;">
         <form method="GET" action="controller">
@@ -44,8 +45,9 @@
         </form>
     </div>
 
-    <jsp:include page="footer.jsp"/>
 </div>
+
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>
