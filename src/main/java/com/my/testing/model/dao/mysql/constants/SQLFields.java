@@ -12,6 +12,10 @@ public final class SQLFields {
     public static final String DURATION = "duration";
     public static final String NUMBER_OF_QUERIES = "number_of_queries";
     public static final String NUMBER_OF_RECORDS = "number_of_records";
+    public static final String TEXT = "text";
+    public static final String TEST_ID = "test_id";
+    public static final String IS_CORRECT = "is_correct";
+    public static final String QUESTION_ID = "question_id";
 
     private SQLFields() {}
 }
