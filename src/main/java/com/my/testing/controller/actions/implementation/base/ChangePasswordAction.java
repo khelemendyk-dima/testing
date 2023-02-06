@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import static com.my.testing.controller.actions.ActionUtil.*;
 import static com.my.testing.controller.actions.constants.Pages.CHANGE_PASSWORD_PAGE;
-import static com.my.testing.controller.actions.constants.ParameterValues.SUCCEED_UPDATE;
+import static com.my.testing.controller.actions.constants.ParameterValues.SUCCEED_UPDATED;
 import static com.my.testing.controller.actions.constants.Parameters.*;
 import static com.my.testing.controller.actions.constants.ActionNames.CHANGE_PASSWORD_ACTION;
 
@@ -39,7 +39,7 @@ public class ChangePasswordAction implements Action {
             String confirmPassword = request.getParameter(CONFIRM_PASSWORD);
 
             userService.changePassword(id, oldPassword, password, confirmPassword);
-            request.getSession().setAttribute(MESSAGE, SUCCEED_UPDATE);
+            request.getSession().setAttribute(MESSAGE, SUCCEED_UPDATED);
         } catch (IncorrectFormatException | IncorrectPasswordException | NoSuchUserException | PasswordMatchingException e) {
             request.getSession().setAttribute(ERROR, e.getMessage());
         }

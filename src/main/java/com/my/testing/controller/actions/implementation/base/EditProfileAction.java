@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import static com.my.testing.controller.actions.ActionUtil.*;
 import static com.my.testing.controller.actions.constants.ActionNames.EDIT_PROFILE_ACTION;
 import static com.my.testing.controller.actions.constants.Pages.EDIT_PROFILE_PAGE;
-import static com.my.testing.controller.actions.constants.ParameterValues.SUCCEED_UPDATE;
+import static com.my.testing.controller.actions.constants.ParameterValues.SUCCEED_UPDATED;
 import static com.my.testing.controller.actions.constants.Parameters.*;
 
 public class EditProfileAction implements Action {
@@ -37,7 +37,7 @@ public class EditProfileAction implements Action {
         UserDTO user = getUserDTO(request, sessionUser);
         try {
             userService.update(user);
-            request.getSession().setAttribute(MESSAGE, SUCCEED_UPDATE);
+            request.getSession().setAttribute(MESSAGE, SUCCEED_UPDATED);
             updateSessionUser(sessionUser, user);
         } catch (IncorrectFormatException | DuplicateEmailException e) {
             request.getSession().setAttribute(USER, user);

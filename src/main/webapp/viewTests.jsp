@@ -38,7 +38,7 @@
 
             <div class="form-floating">
                 <input class="form-control" type="text" name="name" id="name"
-                       placeholder="Name" pattern="^[A-Za-zА-ЩЬЮЯҐІЇЄа-щьюяґіїє'.,?\- ]{1,100}"
+                       placeholder="Name" pattern="^[A-Za-zА-ЩЬЮЯҐІЇЄа-щьюяґіїє'&quot:.,!?\- ]{1,100}"
                        title="<fmt:message key="test.name.requirements"/>"
                        value="${param.name}">
                 <label for="name"><fmt:message key="test.name"/></label>

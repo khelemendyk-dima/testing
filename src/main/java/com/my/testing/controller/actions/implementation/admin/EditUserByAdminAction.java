@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import static com.my.testing.controller.actions.ActionUtil.*;
 import static com.my.testing.controller.actions.constants.ActionNames.EDIT_USER_BY_ADMIN_ACTION;
 import static com.my.testing.controller.actions.constants.Pages.EDIT_USER_BY_ADMIN_PAGE;
-import static com.my.testing.controller.actions.constants.ParameterValues.SUCCEED_UPDATE;
+import static com.my.testing.controller.actions.constants.ParameterValues.SUCCEED_UPDATED;
 import static com.my.testing.controller.actions.constants.Parameters.*;
 
 public class EditUserByAdminAction implements Action {
@@ -36,7 +36,7 @@ public class EditUserByAdminAction implements Action {
         try {
             userService.update(user);
             request.getSession().setAttribute(USER, user);
-            request.getSession().setAttribute(MESSAGE, SUCCEED_UPDATE);
+            request.getSession().setAttribute(MESSAGE, SUCCEED_UPDATED);
         } catch (IncorrectFormatException | DuplicateEmailException e) {
             request.getSession().setAttribute(USER, user);
             request.getSession().setAttribute(ERROR, e.getMessage());

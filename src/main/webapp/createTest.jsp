@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
@@ -32,7 +31,7 @@
 
             <div class="form-floating">
                 <input class="form-control" type="text" name="name" id="name"
-                       placeholder="Name" pattern="^[A-Za-zА-ЩЬЮЯҐІЇЄа-щьюяґіїє'.,?\- ]{1,100}"
+                       placeholder="Name" pattern="^[A-Za-zА-ЩЬЮЯҐІЇЄа-щьюяґіїє'&quot:.,!?\- ]{1,100}"
                        title="<fmt:message key="test.name.requirements"/>"
                        required>
                 <label for="name"><fmt:message key="test.name"/></label>
@@ -84,9 +83,9 @@
                     </select>
                 </label>
 
-                <div class="form-floating">
-                    <input class="form-control" type="time" name="duration" id="duration" value="00:00"
-                           placeholder="Duration">
+                <div class="form-floating w-25">
+                    <input class="form-control" type="number" name="duration" id="duration" value="0"
+                           placeholder="0" min="0">
                     <label for="duration"><fmt:message key="test.duration"/></label>
                 </div>
             </div>
