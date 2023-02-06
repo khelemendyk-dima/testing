@@ -78,12 +78,17 @@ public class MysqlTestDAO implements TestDAO {
         return tests;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void add(Test test) throws DAOException {
         try (Connection connection = DataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ADD_TEST)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(ADD_TEST, Statement.RETURN_GENERATED_KEYS)) {
             setStatementFieldsForAddMethod(test, preparedStatement);
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()) {
+                test.setId(resultSet.getLong(1));
+            }
         } catch (SQLException e) {
             throw new DAOException(e);
         }
