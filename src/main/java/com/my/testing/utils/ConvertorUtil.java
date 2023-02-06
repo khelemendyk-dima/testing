@@ -49,5 +49,37 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    public static Question convertDTOToQuestion(QuestionDTO questionDTO) {
+        return Question.builder()
+                .id(questionDTO.getId())
+                .text(questionDTO.getText())
+                .testId(questionDTO.getTestId())
+                .build();
+    }
 
+    public static QuestionDTO convertQuestionToDTO(Question question) {
+        return QuestionDTO.builder()
+                .id(question.getId())
+                .text(question.getText())
+                .testId(question.getTestId())
+                .build();
+    }
+
+    public static Answer convertDTOToAnswer(AnswerDTO answerDTO) {
+        return Answer.builder()
+                .id(answerDTO.getId())
+                .text(answerDTO.getText())
+                .isCorrect(answerDTO.isCorrect())
+                .questionId(answerDTO.getQuestionId())
+                .build();
+    }
+
+    public static AnswerDTO convertAnswerToDTO(Answer answer) {
+        return AnswerDTO.builder()
+                .id(answer.getId())
+                .text(answer.getText())
+                .isCorrect(answer.isCorrect())
+                .questionId(answer.getQuestionId())
+                .build();
+    }
 }

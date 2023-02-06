@@ -23,6 +23,14 @@ public final class ValidatorUtil {
         validateFormat(name, Regex.TEST_NAME_REGEX, ENTER_CORRECT_NAME);
     }
 
+    public static void validateQuestionText(String text) throws IncorrectFormatException {
+        validateFormat(text, Regex.QUESTION_TEXT_REGEX, ENTER_CORRECT_TEXT);
+    }
+
+    public static void validateAnswerText(String text) throws IncorrectFormatException {
+        validateFormat(text, Regex.ANSWER_TEXT_REGEX, ENTER_CORRECT_TEXT);
+    }
+
     public static void validateFormat(String name, String regex, String message) throws IncorrectFormatException {
         if (name == null || !name.matches(regex))
             throw new IncorrectFormatException(message);
@@ -34,6 +42,14 @@ public final class ValidatorUtil {
 
     public static long getTestId(String idString) throws ServiceException {
         return checkId(idString, new NoSuchTestException());
+    }
+
+    public static long getQuestionId(String idString) throws ServiceException {
+        return checkId(idString, new NoSuchQuestionException());
+    }
+
+    public static long getAnswerId(String idString) throws ServiceException {
+        return checkId(idString, new NoSuchAnswerException());
     }
 
     public static long checkId(String idString, ServiceException exception) throws ServiceException {
