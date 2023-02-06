@@ -1,9 +1,6 @@
 package com.my.testing.controller.actions;
 
-import com.my.testing.controller.actions.implementation.admin.CreateTestAction;
-import com.my.testing.controller.actions.implementation.admin.EditUserByAdminAction;
-import com.my.testing.controller.actions.implementation.admin.FindUserAction;
-import com.my.testing.controller.actions.implementation.admin.SetRoleAction;
+import com.my.testing.controller.actions.implementation.admin.*;
 import com.my.testing.controller.actions.implementation.base.*;
 import com.my.testing.controller.context.AppContext;
 
@@ -28,6 +25,13 @@ public final class ActionFactory {
         ACTION_MAP.put(EDIT_USER_BY_ADMIN_ACTION, new EditUserByAdminAction(APP_CONTEXT));
         ACTION_MAP.put(CREATE_TEST_ACTION, new CreateTestAction(APP_CONTEXT));
         ACTION_MAP.put(VIEW_TESTS_ACTION, new ViewTestsAction(APP_CONTEXT));
+        ACTION_MAP.put(SEARCH_TEST_ACTION, new SearchTestAction(APP_CONTEXT));
+        ACTION_MAP.put(CREATE_QUESTION_ACTION, new CreateQuestionAction(APP_CONTEXT));
+        ACTION_MAP.put(DELETE_QUESTION_ACTION, new DeleteQuestionAction(APP_CONTEXT));
+        ACTION_MAP.put(DELETE_TEST_ACTION, new DeleteTestAction(APP_CONTEXT));
+        ACTION_MAP.put(EDIT_TEST_ACTION, new EditTestAction(APP_CONTEXT));
+        ACTION_MAP.put(SEARCH_QUESTION_ACTION, new SearchQuestionAction(APP_CONTEXT));
+        ACTION_MAP.put(EDIT_QUESTION_ACTION, new EditQuestionAction(APP_CONTEXT));
     }
 
     private ActionFactory() {}

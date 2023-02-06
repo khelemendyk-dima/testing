@@ -12,6 +12,12 @@ public final class ActionNames {
     public static final String EDIT_USER_BY_ADMIN_ACTION = "edit-user-by-admin";
     public static final String CREATE_TEST_ACTION = "create-test";
     public static final String VIEW_TESTS_ACTION = "view-tests";
-
+    public static final String SEARCH_TEST_ACTION = "search-test";
+    public static final String CREATE_QUESTION_ACTION = "create-question";
+    public static final String DELETE_QUESTION_ACTION = "delete-question";
+    public static final String DELETE_TEST_ACTION = "delete-test";
+    public static final String EDIT_TEST_ACTION = "edit-test";
+    public static final String EDIT_QUESTION_ACTION = "edit-question";
+    public static final String SEARCH_QUESTION_ACTION = "search-question";
     private ActionNames() {}
 }

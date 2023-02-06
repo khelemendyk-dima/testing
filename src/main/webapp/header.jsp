@@ -28,7 +28,6 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="controller?action=view-tests"><fmt:message key="solve.tests"/></a></li>
                         <li><a class="dropdown-item" href="createTest.jsp"><fmt:message key="create.test"/></a></li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="find.test"/></a></li>
                         <li><a class="dropdown-item" href="#"><fmt:message key="view.results"/></a></li>
                     </ul>
                 </div>
@@ -41,7 +40,7 @@
                         <fmt:message key="tests"/>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><fmt:message key="solve.tests"/></a></li>
+                        <li><a class="dropdown-item" href="controller?action=view-tests"><fmt:message key="solve.tests"/></a></li>
                         <li><a class="dropdown-item" href="#"><fmt:message key="view.results"/></a></li>
                     </ul>
                 </div>

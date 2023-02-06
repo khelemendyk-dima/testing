@@ -31,6 +31,16 @@ public final class Parameters {
     public static final String CURRENT_PAGE = "currentPage";
     public static final String START = "start";
     public static final String END = "end";
+    public static final String TEST_ID = "testId";
+    public static final String QUESTIONS = "questions";
+    public static final String QUESTION = "question";
+    public static final String ANSWERS = "answers";
+    public static final String ANSWER = "answer";
+    public static final String CORRECT = "correct";
+    public static final String QUESTION_TEXT = "questionText";
+    public static final String ANSWERS_TEXT = "answersText";
+    public static final String NUMBER_OF_ANSWERS = "numberOfAnswers";
+    public static final String QUESTION_ID = "questionId";
 
     private Parameters() {}
 }
