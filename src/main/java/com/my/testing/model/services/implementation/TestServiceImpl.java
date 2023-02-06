@@ -30,6 +30,7 @@ public class TestServiceImpl implements TestService {
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
+        testDTO.setId(test.getId());
     }
 
     @Override
