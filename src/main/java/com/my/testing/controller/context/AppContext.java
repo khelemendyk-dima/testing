@@ -9,6 +9,7 @@ public class AppContext {
     @Getter private final TestService testService = serviceFactory.getTestService();
     @Getter private final QuestionService questionService = serviceFactory.getQuestionService();
     @Getter private final AnswerService answerService = serviceFactory.getAnswerService();
+    @Getter private final TestResultService testResultService = serviceFactory.getTestResultService();
 
     public static AppContext getAppContext() {
         return new AppContext();

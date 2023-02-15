@@ -1,10 +1,7 @@
 package com.my.testing.model.services;
 
 import com.my.testing.model.dao.DAOFactory;
-import com.my.testing.model.services.implementation.AnswerServiceImpl;
-import com.my.testing.model.services.implementation.QuestionServiceImpl;
-import com.my.testing.model.services.implementation.TestServiceImpl;
-import com.my.testing.model.services.implementation.UserServiceImpl;
+import com.my.testing.model.services.implementation.*;
 
 public class ServiceFactory {
 
@@ -12,6 +9,7 @@ public class ServiceFactory {
     private final TestService testService;
     private final QuestionService questionService;
     private final AnswerService answerService;
+    private final TestResultService testResultService;
 
     private ServiceFactory() {
         DAOFactory daoFactory = DAOFactory.getInstance();
@@ -19,6 +17,7 @@ public class ServiceFactory {
         testService = new TestServiceImpl(daoFactory.getTestDAO());
         questionService = new QuestionServiceImpl(daoFactory.getQuestionDAO());
         answerService = new AnswerServiceImpl(daoFactory.getAnswerDAO());
+        testResultService = new TestResultServiceImpl(daoFactory.getTestResultDAO());
     }
 
     public static ServiceFactory getInstance() {
@@ -39,5 +38,9 @@ public class ServiceFactory {
 
     public AnswerService getAnswerService() {
         return answerService;
+    }
+
+    public TestResultService getTestResultService() {
+        return testResultService;
     }
 }
