@@ -6,6 +6,7 @@ public final class Message {
     public static final String DUPLICATE_EMAIL = "error.email.duplicate";
     public static final String NO_USER = "error.email.absent";
     public static final String NO_TEST = "error.test.absent";
+    public static final String NO_TEST_RESULT = "error.test.result.absent";
     public static final String NO_QUESTION = "error.question.absent";
     public static final String NO_ANSWER = "error.answer.absent";
     public static final String NO_CORRECT_ANSWER = "error.answer.no.correct";
