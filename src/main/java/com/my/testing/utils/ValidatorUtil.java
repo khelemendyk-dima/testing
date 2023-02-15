@@ -52,6 +52,10 @@ public final class ValidatorUtil {
         return checkId(idString, new NoSuchAnswerException());
     }
 
+    public static long getTestResultId(String idString) throws ServiceException {
+        return checkId(idString, new NoSuchTestResultException());
+    }
+
     public static long checkId(String idString, ServiceException exception) throws ServiceException {
         long eventId;
         try {

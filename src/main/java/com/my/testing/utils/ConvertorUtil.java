@@ -3,7 +3,6 @@ package com.my.testing.utils;
 import com.my.testing.dto.*;
 import com.my.testing.model.entities.*;
 import com.my.testing.model.entities.enums.*;
-import org.apache.commons.text.WordUtils;
 
 public final class ConvertorUtil {
 
@@ -42,8 +41,8 @@ public final class ConvertorUtil {
         return TestDTO.builder()
                 .id(test.getId())
                 .name(test.getName())
-                .subject(WordUtils.capitalizeFully(String.valueOf(Subject.getSubject(test.getSubjectId()))))
-                .difficulty(WordUtils.capitalizeFully(String.valueOf(Difficulty.getDifficulty(test.getDifficultyId()))))
+                .subject(String.valueOf(Subject.getSubject(test.getSubjectId())))
+                .difficulty(String.valueOf(Difficulty.getDifficulty(test.getDifficultyId())))
                 .duration(test.getDuration())
                 .numberOfQueries(test.getNumberOfQueries())
                 .build();
@@ -80,6 +79,26 @@ public final class ConvertorUtil {
                 .text(answer.getText())
                 .isCorrect(answer.isCorrect())
                 .questionId(answer.getQuestionId())
+                .build();
+    }
+
+    public static TestResult convertDTOToTestResult(TestResultDTO testResultDTO) {
+        return TestResult.builder()
+                .id(testResultDTO.getId())
+                .userId(testResultDTO.getUserId())
+                .testId(testResultDTO.getTestId())
+                .result(testResultDTO.getResult())
+                .testName(testResultDTO.getTestName())
+                .build();
+    }
+
+    public static TestResultDTO convertTestResultToDTO(TestResult testResult) {
+        return TestResultDTO.builder()
+                .id(testResult.getId())
+                .userId(testResult.getUserId())
+                .testId(testResult.getTestId())
+                .result(testResult.getResult())
+                .testName(testResult.getTestName())
                 .build();
     }
 }
