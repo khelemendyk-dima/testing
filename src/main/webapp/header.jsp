@@ -28,7 +28,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="controller?action=view-tests"><fmt:message key="solve.tests"/></a></li>
                         <li><a class="dropdown-item" href="createTest.jsp"><fmt:message key="create.test"/></a></li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="view.results"/></a></li>
+                        <li><a class="dropdown-item" href="controller?action=view-results"><fmt:message key="view.results"/></a></li>
                     </ul>
                 </div>
                 <a href="findUser.jsp" class="nav-link link-dark px-2 my-auto"><fmt:message key="find.student"/></a>
@@ -41,7 +41,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="controller?action=view-tests"><fmt:message key="solve.tests"/></a></li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="view.results"/></a></li>
+                        <li><a class="dropdown-item" href="controller?action=view-results"><fmt:message key="view.results"/></a></li>
                     </ul>
                 </div>
                 <a href="profile.jsp" class="nav-link link-dark px-2 my-auto border-end"><fmt:message key="profile"/></a>

@@ -30,8 +30,8 @@
         <p>${sessionScope.loggedUser.name}</p>
         <p class="fw-bold fs-4 mb-0"><fmt:message key="surname"/></p>
         <p>${sessionScope.loggedUser.surname}</p>
-        <a href="editProfile.jsp" class="btn btn-secondary mt-2"><fmt:message key="edit.profile"/></a><br>
-        <a href="#" class="btn btn-secondary mt-2"><fmt:message key="view.results"/></a><br>
+        <a href="editProfile.jsp" class="btn btn-primary mt-2"><fmt:message key="edit.profile"/></a><br>
+        <a href="controller?action=view-results" class="btn btn-primary mt-2"><fmt:message key="view.results"/></a><br>
         <a href="controller?action=sign-out" class="btn btn-danger mt-2 mb-3" role="button"><fmt:message key="sign.out"/></a>
     </div>
 
