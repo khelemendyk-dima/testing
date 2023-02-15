@@ -16,6 +16,7 @@ public class TestQueryBuilder extends QueryBuilder {
         TEST_SORT_FIELDS_SET.add(NAME);
         TEST_SORT_FIELDS_SET.add(DIFFICULTY_ID);
         TEST_SORT_FIELDS_SET.add(NUMBER_OF_QUERIES);
+        TEST_SORT_FIELDS_SET.add(DURATION);
     }
 
     public  TestQueryBuilder() {
