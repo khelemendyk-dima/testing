@@ -2,6 +2,7 @@ package com.my.testing.controller.actions;
 
 import com.my.testing.controller.actions.implementation.admin.*;
 import com.my.testing.controller.actions.implementation.base.*;
+import com.my.testing.controller.actions.implementation.user.*;
 import com.my.testing.controller.context.AppContext;
 
 import java.util.*;
@@ -32,6 +33,10 @@ public final class ActionFactory {
         ACTION_MAP.put(EDIT_TEST_ACTION, new EditTestAction(APP_CONTEXT));
         ACTION_MAP.put(SEARCH_QUESTION_ACTION, new SearchQuestionAction(APP_CONTEXT));
         ACTION_MAP.put(EDIT_QUESTION_ACTION, new EditQuestionAction(APP_CONTEXT));
+        ACTION_MAP.put(START_TEST_ACTION, new StartTestAction());
+        ACTION_MAP.put(SOLVE_TEST_ACTION, new SolveTestAction(APP_CONTEXT));
+        ACTION_MAP.put(END_TEST_ACTION, new EndTestAction(APP_CONTEXT));
+        ACTION_MAP.put(VIEW_RESULTS_ACTION, new ViewResultsAction(APP_CONTEXT));
     }
 
     private ActionFactory() {}

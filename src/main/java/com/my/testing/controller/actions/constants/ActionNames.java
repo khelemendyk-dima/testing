@@ -19,5 +19,9 @@ public final class ActionNames {
     public static final String EDIT_TEST_ACTION = "edit-test";
     public static final String EDIT_QUESTION_ACTION = "edit-question";
     public static final String SEARCH_QUESTION_ACTION = "search-question";
+    public static final String SOLVE_TEST_ACTION = "solve-test";
+    public static final String START_TEST_ACTION = "start-test";
+    public static final String END_TEST_ACTION = "end-test";
+    public static final String VIEW_RESULTS_ACTION = "view-results";
     private ActionNames() {}
 }

@@ -14,6 +14,7 @@ public final class Parameters {
     public static final String OLD_PASSWORD = "old-password";
     public static final String CURRENT_PATH = "current-path";
     public static final String LOGGED_USER = "loggedUser";
+    public static final String USER_ID = "userId";
     public static final String ROLE = "role";
 
     public static final String TEST = "test";
@@ -41,6 +42,10 @@ public final class Parameters {
     public static final String ANSWERS_TEXT = "answersText";
     public static final String NUMBER_OF_ANSWERS = "numberOfAnswers";
     public static final String QUESTION_ID = "questionId";
+    public static final String FINISH_TEST_TIME = "finishTime";
+    public static final String NUMBER_OF_CORRECT_ANSWERS = "numberOfCorrectAnswers";
+    public static final String SCORE = "score";
+    public static final String TEST_RESULTS = "testResults";
 
     private Parameters() {}
 }

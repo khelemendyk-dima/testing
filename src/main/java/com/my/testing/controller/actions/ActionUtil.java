@@ -28,6 +28,22 @@ public class ActionUtil {
         }
     }
 
+    public static void transferIntFromSessionToRequest(HttpServletRequest request, String attributeName) {
+        Integer attributeValue = (Integer) request.getSession().getAttribute(attributeName);
+        if (attributeValue != null) {
+            request.setAttribute(attributeName, attributeValue);
+            request.getSession().removeAttribute(attributeName);
+        }
+    }
+
+    public static void transferFloatFromSessionToRequest(HttpServletRequest request, String attributeName) {
+        Float attributeValue = (Float) request.getSession().getAttribute(attributeName);
+        if (attributeValue != null) {
+            request.setAttribute(attributeName, attributeValue);
+            request.getSession().removeAttribute(attributeName);
+        }
+    }
+
     public static void transferUserDTOFromSessionToRequest(HttpServletRequest request) {
         UserDTO user = (UserDTO) request.getSession().getAttribute(USER);
         if (user != null) {

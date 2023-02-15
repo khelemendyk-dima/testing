@@ -18,5 +18,8 @@ public final class Pages {
     public static final String CREATE_QUESTION_PAGE = "createQuestion.jsp";
     public static final String EDIT_TEST_PAGE = "editTest.jsp";
     public static final String EDIT_QUESTION_PAGE = "editQuestion.jsp";
+    public static final String SOLVE_TEST_PAGE = "solveTest.jsp";
+    public static final String VIEW_RESULT_PAGE = "viewResult.jsp";
+    public static final String VIEW_RESULTS_PAGE = "viewResults.jsp";
     private Pages() {}
 }
