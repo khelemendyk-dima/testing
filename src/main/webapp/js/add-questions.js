@@ -4,6 +4,7 @@ let deleteBtn = document.getElementById('deleteTest')
 let maxAmountOfQuestions = 8
 let form = document.getElementById('answersDiv')
 let count = document.getElementById('numberOfAnswers').value
+let answer = document.getElementById('answer').value
 
 if (addBtn) {
     addBtn.addEventListener('click', function(e) {
@@ -25,7 +26,7 @@ if (addBtn) {
             input.value = ``
 
             newAnswerDiv.childNodes[3].childNodes[3].setAttribute('for', `answer${count}`)
-            newAnswerDiv.childNodes[3].childNodes[3].childNodes[0].textContent = `Answer ${count}`
+            newAnswerDiv.childNodes[3].childNodes[3].childNodes[0].textContent = `${answer} ${count}`
 
 
             form.appendChild(newAnswerDiv)

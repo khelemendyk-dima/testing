@@ -43,7 +43,7 @@
 
             <div class="form-floating">
                 <input class="form-control" type="text" name="name" id="name"
-                       placeholder="Name" pattern="^[A-Za-zА-ЩЬЮЯҐІЇЄа-щьюяґіїє'&quot:.,!?\- ]{1,100}"
+                       placeholder="Name" pattern="^[A-Za-zА-ЩЬЮЯҐІЇЄа-щьюяґіїє0-9'&quot:.,!?\-() ]{1,100}"
                        value="${nameValue}"
                        title="<fmt:message key="test.name.requirements"/>"
                        required>
@@ -57,25 +57,25 @@
                 <label>
                     <select name="subject" class="form-select py-3" required>
                         <option value=""><fmt:message key="select.subject"/></option>
-                        <option value="ENGLISH" ${subjectValue eq 'English' ? 'selected' : ''}>
+                        <option value="ENGLISH" ${subjectValue eq 'ENGLISH' ? 'selected' : ''}>
                             <fmt:message key="ENGLISH"/>
                         </option>
-                        <option value="UKRAINIAN" ${subjectValue eq 'Ukrainian' ? 'selected' : ''}>
+                        <option value="UKRAINIAN" ${subjectValue eq 'UKRAINIAN' ? 'selected' : ''}>
                             <fmt:message key="UKRAINIAN"/>
                         </option>
-                        <option value="MATH" ${subjectValue eq 'Math' ? 'selected' : ''}>
+                        <option value="MATH" ${subjectValue eq 'MATH' ? 'selected' : ''}>
                             <fmt:message key="MATH"/>
                         </option>
-                        <option value="HISTORY" ${subjectValue eq 'History' ? 'selected' : ''}>
+                        <option value="HISTORY" ${subjectValue eq 'HISTORY' ? 'selected' : ''}>
                             <fmt:message key="HISTORY"/>
                         </option>
-                        <option value="BIOLOGY" ${subjectValue eq 'Biology' ? 'selected' : ''}>
+                        <option value="BIOLOGY" ${subjectValue eq 'BIOLOGY' ? 'selected' : ''}>
                             <fmt:message key="BIOLOGY"/>
                         </option>
-                        <option value="CHEMISTRY" ${subjectValue eq 'Chemistry' ? 'selected' : ''}>
+                        <option value="CHEMISTRY" ${subjectValue eq 'CHEMISTRY' ? 'selected' : ''}>
                             <fmt:message key="CHEMISTRY"/>
                         </option>
-                        <option value="PHYSICS" ${subjectValue eq 'Physics' ? 'selected' : ''}>
+                        <option value="PHYSICS" ${subjectValue eq 'PHYSICS' ? 'selected' : ''}>
                             <fmt:message key="PHYSICS"/>
                         </option>
                     </select>
@@ -84,13 +84,13 @@
                 <label>
                     <select name="difficulty" class="form-select py-3" required>
                         <option value=""><fmt:message key="select.difficulty"/></option>
-                        <option value="HARD" ${difficultyValue eq 'Hard' ? 'selected' : ''}>
+                        <option value="HARD" ${difficultyValue eq 'HARD' ? 'selected' : ''}>
                             <fmt:message key="HARD"/>
                         </option>
-                        <option value="MEDIUM" ${difficultyValue eq 'Medium' ? 'selected' : ''}>
+                        <option value="MEDIUM" ${difficultyValue eq 'MEDIUM' ? 'selected' : ''}>
                             <fmt:message key="MEDIUM"/>
                         </option>
-                        <option value="EASY" ${difficultyValue eq 'Easy' ? 'selected' : ''}>
+                        <option value="EASY" ${difficultyValue eq 'EASY' ? 'selected' : ''}>
                             <fmt:message key="EASY"/>
                         </option>
                     </select>

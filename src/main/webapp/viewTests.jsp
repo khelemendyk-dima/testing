@@ -83,6 +83,9 @@
                             <option value="number_of_queries" ${param.sortField eq "number_of_queries" ? "selected" : ""}>
                                 <fmt:message key="number.of.queries"/>
                             </option>
+                            <option value="duration" ${param.sortField eq "duration" ? "selected" : ""}>
+                                <fmt:message key="duration"/>
+                            </option>
                         </select>
                     </label>
                     <label>
@@ -117,6 +120,7 @@
                         <th class="text-start" scope="col"><fmt:message key="test.name"/></th>
                         <th scope="col"><fmt:message key="subject"/></th>
                         <th scope="col"><fmt:message key="difficulty"/></th>
+                        <th scope="col"><fmt:message key="duration"/></th>
                         <th scope="col"><fmt:message key="questions"/></th>
                         <th scope="col"><fmt:message key="action"/></th>
                     </tr>
@@ -125,10 +129,11 @@
                     <tbody>
                     <c:forEach var="test" items="${requestScope.tests}">
                         <tr>
-                            <td class="text-start"><c:out value="${test.name}"/></td>
-                            <td><c:out value="${test.subject}"/></td>
-                            <td><c:out value="${test.difficulty}"/></td>
-                            <td><c:out value="${test.numberOfQueries}"/></td>
+                            <td class="text-start">${test.name}</td>
+                            <td><fmt:message key="${test.subject}"/></td>
+                            <td><fmt:message key="${test.difficulty}"/></td>
+                            <td>${test.duration eq '0' ? "&infin;" : test.duration}</td>
+                            <td>${test.numberOfQueries}</td>
                             <td>
                                 <a class="link-dark" href="controller?action=search-test&id=${test.id}">
                                     <fmt:message key="view"/>

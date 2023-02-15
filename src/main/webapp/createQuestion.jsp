@@ -35,6 +35,7 @@
 
             <div class="mt-4 bg-secondary-subtle rounded" id="answersDiv">
                 <input id="numberOfAnswers" type="hidden" value="${requestScope.numberOfAnswers eq null ? 4 : requestScope.numberOfAnswers}">
+                <input id="answer" type="hidden" value="<fmt:message key="answer"/>">
 
                 <c:if test="${not empty requestScope.error}">
                     <span class="text-danger"><fmt:message key="${requestScope.error}"/></span>

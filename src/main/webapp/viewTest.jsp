@@ -27,8 +27,8 @@
         <div class="row">
 
             <div class="col">
-                <p><fmt:message key="subject"/>: ${requestScope.test.subject}</p>
-                <p><fmt:message key="difficulty"/>: ${requestScope.test.difficulty}</p>
+                <p><fmt:message key="subject"/>: <fmt:message key="${requestScope.test.subject}"/></p>
+                <p><fmt:message key="difficulty"/>: <fmt:message key="${requestScope.test.difficulty}"/></p>
             </div>
             <div class="col">
                 <p><fmt:message key="test.duration"/>: ${requestScope.test.duration} <fmt:message key="minutes"/></p>
@@ -37,7 +37,15 @@
             <div class="col text-end">
                 <c:choose>
                     <c:when test="${sessionScope.role eq 'ADMIN'}">
-                        <div><a href="#" class="btn btn-primary"><fmt:message key="solve"/></a></div>
+                        <div>
+                            <form action="controller" method="POST">
+                                <input type="hidden" name="action" value="start-test">
+                                <input type="hidden" name="id" value="${requestScope.test.id}">
+                                <input type="hidden" name="duration" value="${requestScope.test.duration}">
+
+                                <button class="btn btn-primary"><fmt:message key="solve"/></button>
+                            </form>
+                        </div>
                         <div>
                             <form action="editTest.jsp" method="GET">
                                 <input type="hidden" name="id" value="${requestScope.test.id}">
@@ -51,7 +59,15 @@
                         </div>
                     </c:when>
                     <c:otherwise>
-                        <div><a href="#" class="btn btn-lg btn-primary mt-2"><fmt:message key="solve"/></a></div>
+                        <div>
+                            <form action="controller" method="POST">
+                                <input type="hidden" name="action" value="start-test">
+                                <input type="hidden" name="id" value="${requestScope.test.id}">
+                                <input type="hidden" name="duration" value="${requestScope.test.duration}">
+
+                                <button class="btn btn-lg btn-primary mt-2"><fmt:message key="solve"/></button>
+                            </form>
+                        </div>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -101,28 +117,28 @@
         </div>
     </div>
 
-    <c:set var="count" value="0" scope="page" />
+    <c:if test="${sessionScope.role eq 'ADMIN'}">
+        <c:set var="count" value="0" scope="page" />
 
-    <c:forEach var="question" items="${requestScope.questions}">
-        <c:set var="count" value="${count + 1}" scope="page"/>
-        <div class="d-flex bg-secondary-subtle rounded mb-3 p-2 ">
-            <div class="${sessionScope.role eq 'ADMIN' ? 'col-10' : 'col-12'}">
-                <div class="text-start fw-bold mb-3">${count}. ${question.text}</div>
+        <c:forEach var="question" items="${requestScope.questions}">
+            <c:set var="count" value="${count + 1}" scope="page"/>
+            <div class="d-flex bg-secondary-subtle rounded mb-3 p-2 ">
+                <div class="${sessionScope.role eq 'ADMIN' ? 'col-10' : 'col-12'}">
+                    <div class="text-start fw-bold mb-3">${count}. ${question.text}</div>
 
-                <div class="row ps-4">
-                    <c:forEach var="answer" items="${requestScope.answers}">
-                        <c:if test="${answer.questionId eq question.id}">
-                            <div class="col-6 mb-3 d-flex">
-                                <div class="rounded-1 bg-dark-subtle me-2"
-                                     style="min-width: 17px; height: 17px; margin-top: 5px;"></div>
-                                <div>${answer.text}</div>
-                            </div>
-                        </c:if>
-                    </c:forEach>
+                    <div class="row ps-4">
+                        <c:forEach var="answer" items="${requestScope.answers}">
+                            <c:if test="${answer.questionId eq question.id}">
+                                <div class="col-6 mb-3 d-flex">
+                                    <div class="rounded-1 ${answer.isCorrect() ? 'bg-success' : 'bg-dark-subtle'} me-2"
+                                         style="min-width: 17px; height: 17px; margin-top: 5px;"></div>
+                                    <div>${answer.text}</div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
                 </div>
-            </div>
 
-            <c:if test="${sessionScope.role eq 'ADMIN'}">
                 <div class="col-2 text-end">
                     <form action="controller" method="GET">
                         <input type="hidden" name="action" value="search-question">
@@ -141,11 +157,10 @@
                             <fmt:message key="delete"/>
                         </button>
                     </form>
-
                 </div>
-            </c:if>
-        </div>
-    </c:forEach>
+            </div>
+        </c:forEach>
+    </c:if>
 </div>
 
 <jsp:include page="footer.jsp"/>
