@@ -1,4 +1,4 @@
-package com.my.testing.controller.actions.implementation.base;
+package com.my.testing.controller.actions.implementation.user;
 
 import com.my.testing.controller.actions.Action;
 import com.my.testing.controller.context.AppContext;

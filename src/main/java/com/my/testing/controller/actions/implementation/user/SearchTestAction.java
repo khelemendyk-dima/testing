@@ -1,4 +1,4 @@
-package com.my.testing.controller.actions.implementation.base;
+package com.my.testing.controller.actions.implementation.user;
 
 import com.my.testing.controller.actions.Action;
 import com.my.testing.controller.context.AppContext;
@@ -23,11 +23,12 @@ public class SearchTestAction implements Action {
         questionService = appContext.getQuestionService();
         answerService = appContext.getAnswerService();
     }
+
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
         String path = VIEW_TEST_PAGE;
-        String testId = request.getParameter(ID);
         try {
+            String testId = request.getParameter(ID);
             TestDTO testDTO = testService.getById(testId);
             List<QuestionDTO> questionDTOS = questionService.getAllByTestId(testId);
             List<AnswerDTO> answerDTOS = new ArrayList<>();
