@@ -16,6 +16,9 @@ public final class SQLFields {
     public static final String TEST_ID = "test_id";
     public static final String IS_CORRECT = "is_correct";
     public static final String QUESTION_ID = "question_id";
+    public static final String USER_ID = "user_id";
+    public static final String RESULT = "result";
+    public static final String TEST_NAME = "test_name";
 
     private SQLFields() {}
 }

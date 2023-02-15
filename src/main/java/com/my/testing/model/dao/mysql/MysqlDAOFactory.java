@@ -7,6 +7,7 @@ public class MysqlDAOFactory extends DAOFactory {
     private TestDAO testDAO;
     private QuestionDAO questionDAO;
     private AnswerDAO answerDAO;
+    private TestResultDAO testResultDAO;
 
     @Override
     public UserDAO getUserDAO() {
@@ -42,5 +43,14 @@ public class MysqlDAOFactory extends DAOFactory {
         }
 
         return answerDAO;
+    }
+
+    @Override
+    public TestResultDAO getTestResultDAO() {
+        if (testResultDAO == null) {
+            testResultDAO = new MysqlTestResultDAO();
+        }
+
+        return testResultDAO;
     }
 }
