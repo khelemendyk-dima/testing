@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import static com.my.testing.controller.actions.ActionUtil.*;
 import static com.my.testing.controller.actions.constants.ActionNames.CREATE_TEST_ACTION;
+import static com.my.testing.controller.actions.constants.ActionNames.SEARCH_TEST_ACTION;
 import static com.my.testing.controller.actions.constants.Pages.*;
 import static com.my.testing.controller.actions.constants.Parameters.*;
 
@@ -32,11 +33,12 @@ public class CreateTestAction implements Action {
     }
 
     private String executePost(HttpServletRequest request) throws ServiceException {
-        String path = VIEW_TEST_PAGE;
+        String path = "controller?action=" + SEARCH_TEST_ACTION + "&id=";
         TestDTO test = getTestDTO(request);
         request.getSession().setAttribute(TEST, test);
         try {
             testService.add(test);
+            path += test.getId();
         } catch (IncorrectFormatException e) {
             request.getSession().setAttribute(ERROR, e.getMessage());
             path = CREATE_TEST_PAGE;
