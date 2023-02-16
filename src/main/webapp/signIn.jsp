@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
@@ -32,25 +33,20 @@
 
             <h3 class="mb-4"><fmt:message key="sign.in.title"/></h3>
 
-            <c:if test="${not empty requestScope.message}">
-                <span class="text-success"><fmt:message key="${requestScope.message}"/></span>
-            </c:if>
+            <tags:notEmptyMessage value="${requestScope.message}"/>
+
             <div class="form-floating">
                 <input class="form-control" type="email" name="email" id="email"
                        placeholder="name@example.com" pattern="^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,6}$"
                        value="${requestScope.email}" required>
                 <label for="email"><fmt:message key="email"/></label>
-                <c:if test="${fn:contains(error, 'email')}">
-                    <span class="text-danger"><fmt:message key="${requestScope.error}"/></span>
-                </c:if>
+                <tags:contains error="${error}" value="email"/>
             </div>
             <div class="form-floating">
                 <input class="form-control" type="password" name="password" id="password"
                        placeholder="Password" required>
                 <label for="password"><fmt:message key="password"/></label>
-                <c:if test="${fn:contains(error, 'password')}">
-                    <span class="text-danger"><fmt:message key="${requestScope.error}"/></span>
-                </c:if>
+                <tags:contains error="${error}" value="password"/>
             </div>
 
             <div class="checkbox text-start mx-3 my-1">

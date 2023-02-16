@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
@@ -30,16 +31,13 @@
 
             <h3 class="mb-4"><fmt:message key="change.pass"/></h3>
 
-            <c:if test="${not empty requestScope.message}">
-                <span class="text-success"><fmt:message key="${requestScope.message}"/></span>
-            </c:if><br>
+            <tags:notEmptyMessage value="${requestScope.message}"/>
+            <br>
             <div class="form-floating">
                 <input class="form-control" type="password" name="old-password" id="old-password"
                        placeholder="Password" required>
                 <label for="old-password"><fmt:message key="old.pass"/></label>
-                <c:if test="${not empty requestScope.error}">
-                    <span class="text-danger"><fmt:message key="${requestScope.error}"/></span>
-                </c:if>
+                <tags:notEmptyError value="${requestScope.error}"/>
             </div>
 
             <div class="form-floating">

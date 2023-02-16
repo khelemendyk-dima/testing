@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
@@ -29,16 +30,12 @@
 
             <h3 class="mb-4"><fmt:message key="find.student"/></h3>
 
-            <c:if test="${not empty requestScope.message}">
-                <span class="text-success"><fmt:message key="${requestScope.message}"/></span>
-            </c:if><br>
             <div class="form-floating">
                 <input class="form-control" type="email" name="email" id="email"
                        placeholder="name@example.com" pattern="^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,6}$"  required>
                 <label for="email"><fmt:message key="email"/></label>
-                <c:if test="${not empty requestScope.error}">
-                    <span class="text-danger"><fmt:message key="${requestScope.error}"/></span>
-                </c:if>
+
+                <tags:notEmptyError value="${requestScope.error}"/>
             </div>
 
             <button type="submit" class="w-100 btn btn-lg btn-primary mb-4 mt-4"><fmt:message key="find"/></button>

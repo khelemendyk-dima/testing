@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
@@ -37,9 +38,7 @@
 
             <h3 class="mb-4"><fmt:message key="edit.test"/></h3>
 
-            <c:if test="${not empty requestScope.error}">
-                <span class="text-danger"><fmt:message key="${requestScope.error}"/></span>
-            </c:if>
+            <tags:notEmptyError value="${requestScope.error}"/>
 
             <div class="form-floating">
                 <input class="form-control" type="text" name="name" id="name"
@@ -48,9 +47,6 @@
                        title="<fmt:message key="test.name.requirements"/>"
                        required>
                 <label for="name"><fmt:message key="test.name"/></label>
-                <c:if test="${not empty requestScope.error}">
-                    <span class="text-danger"><fmt:message key="${requestScope.error}"/></span>
-                </c:if>
             </div>
 
             <div class="d-flex mt-4 justify-content-between align-items-center">

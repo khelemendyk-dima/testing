@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
@@ -37,9 +38,7 @@
                 <input id="numberOfAnswers" type="hidden" value="${requestScope.numberOfAnswers}">
                 <input id="answer" type="hidden" value="<fmt:message key="answer"/>">
 
-                <c:if test="${not empty requestScope.error}">
-                    <span class="text-danger"><fmt:message key="${requestScope.error}"/></span>
-                </c:if>
+                <tags:notEmptyError value="${requestScope.error}"/>
 
                 <c:set var="count" value="0" scope="page" />
 
