@@ -18,7 +18,7 @@ public class FindUserAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
-        String path = USER_BY_EMAIL_PAGE;
+        String path = USER_INFO_BY_EMAIL_PAGE;
         try {
             request.setAttribute(USER, userService.getByEmail(request.getParameter(EMAIL)));
         } catch (NoSuchUserException | IncorrectFormatException e) {
