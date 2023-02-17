@@ -31,7 +31,7 @@
             <h3 class="mb-4"><fmt:message key="find.student"/></h3>
 
             <div class="form-floating">
-                <input class="form-control" type="email" name="email" id="email"
+                <input class="form-control" type="email" name="email" id="email" value="${requestScope.email}"
                        placeholder="name@example.com" pattern="^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,6}$"  required>
                 <label for="email"><fmt:message key="email"/></label>
 
