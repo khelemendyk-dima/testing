@@ -42,7 +42,7 @@
                             <c:forEach var="testResult" items="${requestScope.testResults}">
                                 <tr>
                                     <td class="text-start">${testResult.testName}</td>
-                                    <td>${testResult.result}%</td>
+                                    <td><fmt:formatNumber value="${testResult.result}" maxFractionDigits="1"/>%</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
