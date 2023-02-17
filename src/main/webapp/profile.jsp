@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="customtags" prefix="ctg"%>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
@@ -23,7 +24,8 @@
 
 <div class="container">
 
-    <h1 class="display-5 fw-bold mb-4"><fmt:message key="profile.info"/></h1>
+    <h2 class="mb-2"><ctg:hello role="${sessionScope.role}" locale="${sessionScope.locale}"/></h2>
+    <h3 class="mb-3"><fmt:message key="profile.info"/>:</h3>
     <div class="ms-4 fs-5">
         <p class="fw-bold fs-4 mb-0"><fmt:message key="email"/></p>
         <p>${sessionScope.loggedUser.email}</p>

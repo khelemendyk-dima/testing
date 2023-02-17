@@ -1,10 +1,10 @@
 package com.my.testing.model.dao.mysql;
 
 import com.my.testing.exceptions.DAOException;
-import com.my.testing.model.connection.DataSource;
 import com.my.testing.model.dao.AnswerDAO;
 import com.my.testing.model.entities.Answer;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 
@@ -12,10 +12,15 @@ import static com.my.testing.model.dao.mysql.constants.AnswerSQLQueries.*;
 import static com.my.testing.model.dao.mysql.constants.SQLFields.*;
 
 public class MysqlAnswerDAO implements AnswerDAO {
+    private final DataSource dataSource;
+    
+    public MysqlAnswerDAO(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
     @Override
     public Optional<Answer> getById(long id) throws DAOException {
         Answer answer = null;
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_ANSWER_BY_ID)) {
             int k = 0;
             preparedStatement.setLong(++k, id);
@@ -34,9 +39,9 @@ public class MysqlAnswerDAO implements AnswerDAO {
     @Override
     public List<Answer> getAll() throws DAOException {
         List<Answer> answers = new ArrayList<>();
-        try (Connection connection = DataSource.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(GET_ANSWERS)) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_ANSWERS);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 answers.add(createAnswer(resultSet));
             }
@@ -50,7 +55,7 @@ public class MysqlAnswerDAO implements AnswerDAO {
     @Override
     public List<Answer> getAllByQuestionId(long questionId) throws DAOException {
         List<Answer> answers = new ArrayList<>();
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_ANSWERS_BY_QUESTION_ID)) {
             int k = 0;
             preparedStatement.setLong(++k, questionId);
@@ -69,7 +74,7 @@ public class MysqlAnswerDAO implements AnswerDAO {
 
     @Override
     public void add(Answer answer) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_ANSWER)) {
             setStatementFieldsForAddMethod(answer, preparedStatement);
             preparedStatement.executeUpdate();
@@ -80,7 +85,7 @@ public class MysqlAnswerDAO implements AnswerDAO {
 
     @Override
     public void update(Answer answer) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ANSWER)) {
             setStatementFieldsForUpdateMethod(answer, preparedStatement);
             preparedStatement.executeUpdate();
@@ -91,7 +96,7 @@ public class MysqlAnswerDAO implements AnswerDAO {
 
     @Override
     public void delete(long id) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ANSWER)) {
             int k = 0;
             preparedStatement.setLong(++k, id);
@@ -103,7 +108,7 @@ public class MysqlAnswerDAO implements AnswerDAO {
 
     @Override
     public void deleteAllByQuestionId(long questionId) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ALL_BY_QUESTION_ID)) {
             int k = 0;
             preparedStatement.setLong(++k, questionId);

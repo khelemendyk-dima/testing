@@ -1,11 +1,11 @@
 package com.my.testing.model.dao.mysql;
 
 import com.my.testing.exceptions.DAOException;
-import com.my.testing.model.connection.DataSource;
 import com.my.testing.model.dao.UserDAO;
 import com.my.testing.model.entities.User;
 import com.my.testing.model.entities.enums.Role;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 
@@ -13,11 +13,15 @@ import static com.my.testing.model.dao.mysql.constants.SQLFields.*;
 import static com.my.testing.model.dao.mysql.constants.UserSQLQueries.*;
 
 public class MysqlUserDAO implements UserDAO {
+    private final DataSource dataSource;
 
+    public MysqlUserDAO(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
     @Override
     public Optional<User> getById(long id) throws DAOException {
         User user = null;
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ID)) {
             int k = 0;
             preparedStatement.setLong(++k, id);
@@ -35,7 +39,7 @@ public class MysqlUserDAO implements UserDAO {
     @Override
     public Optional<User> getByEmail(String email) throws DAOException {
         User user = null;
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_EMAIL)) {
             int k = 0;
             preparedStatement.setString(++k, email);
@@ -54,9 +58,9 @@ public class MysqlUserDAO implements UserDAO {
     @Override
     public List<User> getAll() throws DAOException {
         List<User> users = new ArrayList<>();
-        try (Connection connection = DataSource.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(GET_ALL_USERS)) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_USERS);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 users.add(createUser(resultSet));
             }
@@ -68,10 +72,10 @@ public class MysqlUserDAO implements UserDAO {
 
     @Override
     public void add(User user) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER)) {
             setStatementFieldsForAddMethod(user, preparedStatement);
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException(e);
         }
@@ -79,7 +83,7 @@ public class MysqlUserDAO implements UserDAO {
 
     @Override
     public void update(User user) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
             setStatementFieldsForUpdateMethod(user, preparedStatement);
             preparedStatement.executeUpdate();
@@ -90,7 +94,7 @@ public class MysqlUserDAO implements UserDAO {
 
     @Override
     public void updatePassword(User user) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PASSWORD)) {
             int k = 0;
             preparedStatement.setString(++k, user.getPassword());
@@ -103,7 +107,7 @@ public class MysqlUserDAO implements UserDAO {
 
     @Override
     public void setUserRole(String email, Role role) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SET_USER_ROLE)) {
             int k = 0;
             preparedStatement.setInt(++k, role.getValue());
@@ -116,7 +120,7 @@ public class MysqlUserDAO implements UserDAO {
 
     @Override
     public void delete(long id) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
             int k = 0;
             preparedStatement.setLong(++k, id);
@@ -128,7 +132,7 @@ public class MysqlUserDAO implements UserDAO {
 
     private User createUser(ResultSet resultSet) throws SQLException {
         return User.builder()
-                .id(resultSet.getInt(ID))
+                .id(resultSet.getLong(ID))
                 .email(resultSet.getString(EMAIL))
                 .name(resultSet.getString(NAME))
                 .surname(resultSet.getString(SURNAME))

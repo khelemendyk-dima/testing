@@ -1,10 +1,10 @@
 package com.my.testing.model.dao.mysql;
 
 import com.my.testing.exceptions.DAOException;
-import com.my.testing.model.connection.DataSource;
 import com.my.testing.model.dao.TestResultDAO;
 import com.my.testing.model.entities.TestResult;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 
@@ -12,10 +12,15 @@ import static com.my.testing.model.dao.mysql.constants.SQLFields.*;
 import static com.my.testing.model.dao.mysql.constants.TestResultSQLQueries.*;
 
 public class MysqlTestResultDAO implements TestResultDAO {
+    private final DataSource dataSource;
+
+    public MysqlTestResultDAO(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
     @Override
     public Optional<TestResult> getById(long id) throws DAOException {
         TestResult testResult = null;
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_TEST_RESULT_BY_ID)) {
             int k = 0;
             preparedStatement.setLong(++k, id);
@@ -35,9 +40,9 @@ public class MysqlTestResultDAO implements TestResultDAO {
     public List<TestResult> getAll() throws DAOException {
         List<TestResult> testResults = new ArrayList<>();
 
-        try (Connection connection = DataSource.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(GET_TEST_RESULTS)) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_TEST_RESULTS);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 testResults.add(createTestResult(resultSet));
             }
@@ -52,7 +57,7 @@ public class MysqlTestResultDAO implements TestResultDAO {
     public List<TestResult> getAllByUserId(long userId) throws DAOException {
         List<TestResult> testResults = new ArrayList<>();
 
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_TEST_RESULTS_BY_USER_ID)) {
             int k = 0;
             preparedStatement.setLong(++k, userId);
@@ -70,7 +75,7 @@ public class MysqlTestResultDAO implements TestResultDAO {
 
     @Override
     public void add(TestResult testResult) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_TEST_RESULT)) {
             setStatementFieldsForAddMethod(testResult, preparedStatement);
             preparedStatement.executeUpdate();
@@ -81,7 +86,7 @@ public class MysqlTestResultDAO implements TestResultDAO {
 
     @Override
     public void update(TestResult testResult) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TEST_RESULT)) {
             setStatementFieldsForUpdateMethod(testResult, preparedStatement);
             preparedStatement.executeUpdate();
@@ -92,7 +97,7 @@ public class MysqlTestResultDAO implements TestResultDAO {
 
     @Override
     public void delete(long id) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TEST_RESULT)) {
             int k = 0;
             preparedStatement.setLong(++k, id);

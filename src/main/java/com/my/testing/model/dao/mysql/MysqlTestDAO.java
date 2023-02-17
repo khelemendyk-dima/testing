@@ -1,10 +1,10 @@
 package com.my.testing.model.dao.mysql;
 
 import com.my.testing.exceptions.DAOException;
-import com.my.testing.model.connection.DataSource;
 import com.my.testing.model.dao.TestDAO;
 import com.my.testing.model.entities.Test;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 
@@ -12,10 +12,15 @@ import static com.my.testing.model.dao.mysql.constants.SQLFields.*;
 import static com.my.testing.model.dao.mysql.constants.TestSQLQueries.*;
 
 public class MysqlTestDAO implements TestDAO {
+    private final DataSource dataSource;
+
+    public MysqlTestDAO(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
     @Override
     public Optional<Test> getById(long id) throws DAOException {
         Test test = null;
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_TEST_BY_ID)) {
             int k = 0;
             preparedStatement.setLong(++k, id);
@@ -34,7 +39,7 @@ public class MysqlTestDAO implements TestDAO {
     @Override
     public List<Test> getSorted(String query) throws DAOException {
         List<Test> tests = new ArrayList<>();
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(String.format(GET_SORTED, query));
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
@@ -50,7 +55,7 @@ public class MysqlTestDAO implements TestDAO {
     @Override
     public int getNumberOfRecords(String filter) throws DAOException {
         int numberOfRecords = 0;
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(String.format(GET_NUMBER_OF_RECORDS, filter));
              ResultSet resultSet = preparedStatement.executeQuery()) {
             if (resultSet.next()) {
@@ -66,9 +71,9 @@ public class MysqlTestDAO implements TestDAO {
     @Override
     public List<Test> getAll() throws DAOException {
         List<Test> tests = new ArrayList<>();
-        try (Connection connection = DataSource.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(GET_TESTS)) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_TESTS);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 tests.add(createTest(resultSet));
             }
@@ -81,7 +86,7 @@ public class MysqlTestDAO implements TestDAO {
     @SuppressWarnings("DuplicatedCode")
     @Override
     public void add(Test test) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_TEST, Statement.RETURN_GENERATED_KEYS)) {
             setStatementFieldsForAddMethod(test, preparedStatement);
             preparedStatement.executeUpdate();
@@ -96,7 +101,7 @@ public class MysqlTestDAO implements TestDAO {
 
     @Override
     public void update(Test test) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TEST)) {
             setStatementFieldsForUpdateMethod(test, preparedStatement);
             preparedStatement.executeUpdate();
@@ -107,7 +112,7 @@ public class MysqlTestDAO implements TestDAO {
 
     @Override
     public void delete(long id) throws DAOException {
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TEST)) {
             int k = 0;
             preparedStatement.setLong(++k, id);
