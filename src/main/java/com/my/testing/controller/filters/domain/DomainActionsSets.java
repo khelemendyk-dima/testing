@@ -22,6 +22,7 @@ public final class DomainActionsSets {
     }
 
     static {
+        blockedUserActions.addAll(anonymousUserActions);
         blockedUserActions.add(SIGN_OUT_ACTION);
     }
 

@@ -27,6 +27,7 @@ public final class DomainPagesSets {
 
     static {
         blockedUserPages.addAll(anonymousUserPages);
+        blockedUserPages.add(PROFILE_PAGE);
     }
 
     static {
