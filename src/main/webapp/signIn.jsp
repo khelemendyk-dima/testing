@@ -34,6 +34,7 @@
             <h3 class="mb-4"><fmt:message key="sign.in.title"/></h3>
 
             <tags:notEmptyMessage value="${requestScope.message}"/>
+            <tags:contains error="${error}" value="access.denied"/>
 
             <div class="form-floating">
                 <input class="form-control" type="email" name="email" id="email"

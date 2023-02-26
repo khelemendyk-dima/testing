@@ -13,6 +13,7 @@ import static com.my.testing.controller.filters.domain.Domain.getDomain;
 
 @WebFilter(urlPatterns = { "/controller/*", "*.jsp" })
 public class AuthorizationFilter implements Filter {
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
@@ -20,7 +21,7 @@ public class AuthorizationFilter implements Filter {
         String servletPath = httpRequest.getServletPath();
         String action = httpRequest.getParameter(ACTION);
         if (role != null && isAccessDenied(servletPath, action, role)) {
-            httpRequest.setAttribute(MESSAGE, ACCESS_DENIED);
+            httpRequest.setAttribute(ERROR, ACCESS_DENIED);
             request.getRequestDispatcher(SIGN_IN_PAGE).forward(request,response);
         } else {
             chain.doFilter(request, response);

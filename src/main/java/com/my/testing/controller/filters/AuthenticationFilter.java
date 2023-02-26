@@ -22,7 +22,7 @@ public class AuthenticationFilter implements Filter {
         String action = httpRequest.getParameter(ACTION);
 
         if (isNoLoggedUser(httpRequest) && isAccessDenied(servletPath, action)) {
-            httpRequest.setAttribute(MESSAGE, ACCESS_DENIED);
+            httpRequest.setAttribute(ERROR, ACCESS_DENIED);
             request.getRequestDispatcher(SIGN_IN_PAGE).forward(request, response);
         } else {
             chain.doFilter(request, response);
