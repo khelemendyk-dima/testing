@@ -11,7 +11,7 @@ import static com.my.testing.controller.actions.constants.ParameterValues.ACCESS
 import static com.my.testing.controller.actions.constants.Parameters.*;
 import static com.my.testing.controller.filters.domain.Domain.getDomain;
 
-@WebFilter("/*")
+@WebFilter(urlPatterns = { "/controller/*", "*.jsp" })
 public class AuthorizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

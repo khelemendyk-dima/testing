@@ -12,7 +12,7 @@ import static com.my.testing.controller.actions.constants.ParameterValues.ACCESS
 import static com.my.testing.controller.actions.constants.Parameters.*;
 import static com.my.testing.controller.filters.domain.Domain.getDomain;
 
-@WebFilter("/*")
+@WebFilter(urlPatterns = { "/controller/*", "*.jsp" })
 public class AuthenticationFilter implements Filter {
 
     @Override
