@@ -46,6 +46,7 @@ public final class Parameters {
     public static final String NUMBER_OF_CORRECT_ANSWERS = "numberOfCorrectAnswers";
     public static final String SCORE = "score";
     public static final String TEST_RESULTS = "testResults";
+    public static final String CAPTCHA = "g-recaptcha-response";
 
     private Parameters() {}
 }

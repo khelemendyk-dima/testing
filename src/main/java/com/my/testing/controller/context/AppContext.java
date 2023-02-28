@@ -2,6 +2,7 @@ package com.my.testing.controller.context;
 
 import com.my.testing.model.connection.MyDataSource;
 import com.my.testing.model.dao.DAOFactory;
+import com.my.testing.utils.CaptchaUtil;
 import lombok.Getter;
 import com.my.testing.model.services.*;
 import org.apache.logging.log4j.LogManager;
@@ -21,9 +22,11 @@ public class AppContext {
     private final QuestionService questionService;
     private final AnswerService answerService;
     private final TestResultService testResultService;
+    private final CaptchaUtil captcha;
 
     private AppContext(String propertiesFile) {
         Properties properties = getProperties(propertiesFile);
+        captcha = new CaptchaUtil(properties);
         DataSource dataSource = MyDataSource.getDataSource(properties);
         DAOFactory daoFactory = DAOFactory.getInstance(dataSource);
         ServiceFactory serviceFactory = ServiceFactory.getInstance(daoFactory);

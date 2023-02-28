@@ -17,6 +17,7 @@ public final class Message {
     public static final String WRONG_PASSWORD = "error.password.wrong";
     public static final String ENTER_CORRECT_NAME = "error.name.format";
     public static final String ENTER_CORRECT_SURNAME = "error.surname.format";
+    public static final String CAPTCHA_INVALID = "error.captcha.invalid";
 
     private Message() {}
 }

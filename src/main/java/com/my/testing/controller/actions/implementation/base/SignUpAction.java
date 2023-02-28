@@ -5,6 +5,7 @@ import com.my.testing.controller.context.AppContext;
 import com.my.testing.dto.UserDTO;
 import com.my.testing.exceptions.*;
 import com.my.testing.model.services.UserService;
+import com.my.testing.utils.CaptchaUtil;
 import jakarta.servlet.http.HttpServletRequest;
 
 import static com.my.testing.controller.actions.ActionUtil.*;
@@ -15,9 +16,11 @@ import static com.my.testing.controller.actions.constants.Parameters.*;
 
 public class SignUpAction implements Action {
     private final UserService userService;
+    private final CaptchaUtil captcha;
 
     public SignUpAction(AppContext appContext) {
         userService = appContext.getUserService();
+        captcha = appContext.getCaptcha();
     }
 
     @Override
@@ -37,9 +40,10 @@ public class SignUpAction implements Action {
         UserDTO user = getUserDTO(request);
         request.getSession().setAttribute(USER, user);
         try {
+            captcha.verify(request.getParameter(CAPTCHA));
             userService.add(user, request.getParameter(PASSWORD), request.getParameter(CONFIRM_PASSWORD));
             request.getSession().setAttribute(MESSAGE, SUCCEED_REGISTERED);
-        } catch (IncorrectFormatException | PasswordMatchingException | DuplicateEmailException e) {
+        } catch (IncorrectFormatException | PasswordMatchingException | DuplicateEmailException | CaptchaException e) {
             request.getSession().setAttribute(ERROR, e.getMessage());
             path = SIGN_UP_PAGE;
         }

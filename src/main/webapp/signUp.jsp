@@ -18,6 +18,7 @@
     <link rel="icon" href="img/favicon.ico">
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/showPass.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 
 <body>
@@ -76,6 +77,9 @@
                     <fmt:message key="show.pass"/>
                 </label>
             </div>
+
+            <div class="g-recaptcha" data-sitekey="6Lf3IcAkAAAAAM0wQKit8-gYW0PkTywoLQ6cTfw_"></div>
+            <tags:contains error="${requestScope.error}" value="captcha"/><br>
 
             <button class="w-100 btn btn-lg btn-primary mb-4 mt-4" type="submit"><fmt:message key="sign.up"/></button>
         </form>
