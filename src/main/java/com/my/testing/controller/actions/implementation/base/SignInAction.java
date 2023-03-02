@@ -6,6 +6,7 @@ import com.my.testing.dto.UserDTO;
 import com.my.testing.exceptions.*;
 import com.my.testing.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import static com.my.testing.controller.actions.ActionUtil.*;
 import static com.my.testing.controller.actions.constants.ActionNames.SIGN_IN_ACTION;
@@ -20,7 +21,7 @@ public class SignInAction implements Action {
     }
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         return isPostMethod(request) ? executePost(request) : executeGet(request);
     }
 

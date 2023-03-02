@@ -6,6 +6,7 @@ import com.my.testing.exceptions.ServiceException;
 import com.my.testing.model.entities.enums.Role;
 import com.my.testing.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import static com.my.testing.controller.actions.ActionUtil.getActionToRedirect;
 import static com.my.testing.controller.actions.constants.ActionNames.FIND_USER_ACTION;
@@ -18,7 +19,7 @@ public class SetRoleAction implements Action {
     }
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String email = request.getParameter(EMAIL);
         int roleId = Role.valueOf(request.getParameter(ROLE)).getValue();
         userService.setRole(email, roleId);

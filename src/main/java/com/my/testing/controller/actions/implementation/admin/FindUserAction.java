@@ -5,6 +5,7 @@ import com.my.testing.controller.context.AppContext;
 import com.my.testing.exceptions.*;
 import com.my.testing.model.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import static com.my.testing.controller.actions.constants.Pages.*;
 import static com.my.testing.controller.actions.constants.Parameters.*;
@@ -17,7 +18,7 @@ public class FindUserAction implements Action {
     }
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String path = USER_INFO_BY_EMAIL_PAGE;
         try {
             request.setAttribute(USER, userService.getByEmail(request.getParameter(EMAIL)));

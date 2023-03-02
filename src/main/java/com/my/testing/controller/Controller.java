@@ -18,19 +18,19 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(process(request)).forward(request, response);
+        request.getRequestDispatcher(process(request, response)).forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect(process(request));
+        response.sendRedirect(process(request, response));
     }
 
-    private String process(HttpServletRequest request) {
+    private String process(HttpServletRequest request, HttpServletResponse response) {
         Action action = ACTION_FACTORY.createAction(request.getParameter(ACTION));
         String path = ERROR_PAGE;
         try {
-            path = action.execute(request);
+            path = action.execute(request, response);
         } catch (Exception e) {
             logger.error(e.getMessage());
         }

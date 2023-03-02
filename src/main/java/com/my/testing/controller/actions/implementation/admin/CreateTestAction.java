@@ -6,6 +6,7 @@ import com.my.testing.dto.TestDTO;
 import com.my.testing.exceptions.*;
 import com.my.testing.model.services.TestService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import static com.my.testing.controller.actions.ActionUtil.*;
 import static com.my.testing.controller.actions.constants.ActionNames.CREATE_TEST_ACTION;
@@ -21,7 +22,7 @@ public class CreateTestAction implements Action {
     }
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         return isPostMethod(request) ? executePost(request) : executeGet(request);
     }
 

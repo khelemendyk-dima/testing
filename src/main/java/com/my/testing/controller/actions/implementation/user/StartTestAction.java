@@ -3,6 +3,7 @@ package com.my.testing.controller.actions.implementation.user;
 import com.my.testing.controller.actions.Action;
 import com.my.testing.exceptions.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +13,7 @@ import static com.my.testing.controller.actions.constants.Parameters.*;
 
 public class StartTestAction implements Action {
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         return isPostMethod(request) ? executePost(request) : executeGet(request);
     }
 

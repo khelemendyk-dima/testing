@@ -6,6 +6,7 @@ import com.my.testing.exceptions.ServiceException;
 import com.my.testing.model.services.TestService;
 import com.my.testing.utils.query.QueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import static com.my.testing.controller.actions.constants.Pages.VIEW_TESTS_PAGE;
 import static com.my.testing.controller.actions.constants.Parameters.*;
@@ -20,7 +21,7 @@ public class ViewTestsAction implements Action {
     }
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         QueryBuilder queryBuilder = getQueryBuilder(request);
         request.setAttribute(TESTS, testService.getSorted(queryBuilder.getQuery()));
         int numberOfRecords = testService.getNumberOfRecords(queryBuilder.getRecordQuery());

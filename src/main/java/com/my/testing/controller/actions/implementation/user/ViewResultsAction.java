@@ -6,6 +6,7 @@ import com.my.testing.dto.UserDTO;
 import com.my.testing.exceptions.ServiceException;
 import com.my.testing.model.services.TestResultService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import static com.my.testing.controller.actions.constants.Pages.VIEW_RESULTS_PAGE;
 import static com.my.testing.controller.actions.constants.Parameters.*;
@@ -18,7 +19,7 @@ public class ViewResultsAction implements Action {
     }
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         UserDTO loggedUser = (UserDTO) request.getSession().getAttribute(LOGGED_USER);
         String userId = String.valueOf(loggedUser.getId());
 

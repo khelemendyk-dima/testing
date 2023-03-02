@@ -6,6 +6,7 @@ import com.my.testing.dto.*;
 import com.my.testing.exceptions.ServiceException;
 import com.my.testing.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.*;
 
 import java.util.*;
@@ -30,7 +31,7 @@ public class EndTestAction implements Action {
     }
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         return isPostMethod(request) ? executePost(request) : executeGet(request);
     }
 

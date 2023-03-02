@@ -6,6 +6,7 @@ import com.my.testing.dto.*;
 import com.my.testing.exceptions.ServiceException;
 import com.my.testing.model.services.*;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class SearchQuestionAction implements Action {
     }
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String path = EDIT_QUESTION_PAGE;
         String questionId = request.getParameter(QUESTION_ID);
 
