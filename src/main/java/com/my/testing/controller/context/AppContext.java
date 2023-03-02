@@ -3,6 +3,8 @@ package com.my.testing.controller.context;
 import com.my.testing.model.connection.MyDataSource;
 import com.my.testing.model.dao.DAOFactory;
 import com.my.testing.utils.CaptchaUtil;
+import com.my.testing.utils.PdfUtil;
+import jakarta.servlet.ServletContext;
 import lombok.Getter;
 import com.my.testing.model.services.*;
 import org.apache.logging.log4j.LogManager;
@@ -23,8 +25,10 @@ public class AppContext {
     private final AnswerService answerService;
     private final TestResultService testResultService;
     private final CaptchaUtil captcha;
+    private final PdfUtil pdfUtil;
 
-    private AppContext(String propertiesFile) {
+    private AppContext(ServletContext servletContext, String propertiesFile) {
+        pdfUtil = new PdfUtil(servletContext);
         Properties properties = getProperties(propertiesFile);
         captcha = new CaptchaUtil(properties);
         DataSource dataSource = MyDataSource.getDataSource(properties);
@@ -41,8 +45,8 @@ public class AppContext {
         return appContext;
     }
 
-    public static void createAppContext(String propertiesFile) {
-        appContext = new AppContext(propertiesFile);
+    public static void createAppContext(ServletContext servletContext, String propertiesFile) {
+        appContext = new AppContext(servletContext, propertiesFile);
     }
 
     private static Properties getProperties(String propertiesFile) {

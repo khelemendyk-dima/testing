@@ -51,5 +51,6 @@ public final class DomainActionsSets {
         adminActions.add(EDIT_QUESTION_ACTION);
         adminActions.add(DELETE_TEST_ACTION);
         adminActions.add(DELETE_QUESTION_ACTION);
+        adminActions.add(TEST_TO_PDF_ACTION);
     }
 }

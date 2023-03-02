@@ -23,5 +23,6 @@ public final class ActionNames {
     public static final String START_TEST_ACTION = "start-test";
     public static final String END_TEST_ACTION = "end-test";
     public static final String VIEW_RESULTS_ACTION = "view-results";
+    public static final String TEST_TO_PDF_ACTION = "test-pdf";
     private ActionNames() {}
 }

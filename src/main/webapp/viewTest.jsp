@@ -22,7 +22,22 @@
 <div class="container justify-content-center" style="max-width: 900px">
 
     <div>
-        <h3 class="mb-4">${requestScope.test.name}</h3>
+        <c:choose>
+            <c:when test="${sessionScope.role eq 'ADMIN'}">
+                <div class="row">
+                    <div class="col-11">
+                        <h3 class="mb-4">${requestScope.test.name}</h3>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center align-items-center">
+                        <a href="controller?action=test-pdf&testId=${requestScope.test.id}"><img src="img/PDF_icon.png" alt="pdf_icon" width="37" height="45"></a>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <h3 class="mb-4">${requestScope.test.name}</h3>
+            </c:otherwise>
+        </c:choose>
+
 
         <div class="row">
 
