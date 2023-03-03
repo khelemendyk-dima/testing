@@ -3,6 +3,7 @@ package com.my.testing.controller.context;
 import com.my.testing.model.connection.MyDataSource;
 import com.my.testing.model.dao.DAOFactory;
 import com.my.testing.utils.CaptchaUtil;
+import com.my.testing.utils.EmailSenderUtil;
 import com.my.testing.utils.PdfUtil;
 import jakarta.servlet.ServletContext;
 import lombok.Getter;
@@ -26,10 +27,12 @@ public class AppContext {
     private final TestResultService testResultService;
     private final CaptchaUtil captcha;
     private final PdfUtil pdfUtil;
+    private final EmailSenderUtil emailSender;
 
     private AppContext(ServletContext servletContext, String propertiesFile) {
         pdfUtil = new PdfUtil(servletContext);
         Properties properties = getProperties(propertiesFile);
+        emailSender = new EmailSenderUtil(properties);
         captcha = new CaptchaUtil(properties);
         DataSource dataSource = MyDataSource.getDataSource(properties);
         DAOFactory daoFactory = DAOFactory.getInstance(dataSource);
