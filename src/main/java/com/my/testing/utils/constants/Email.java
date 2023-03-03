@@ -26,8 +26,7 @@ public class Email {
             DOUBLE_ENTER +
             "Your temporary password is %s. Do not forget to change it in your profile!" +
             DOUBLE_ENTER +
-            "Enter your account <a href=\"http://localhost:8080/testing/signIn.jsp\">here</a>." +
-            DOUBLE_ENTER +
+            "Enter your account <a href=\"http://localhost:8080/testing/signIn.jsp\">here</a>.<br>" +
             FOOTER +
             DOUBLE_ENTER +
             HELLO_UA +
@@ -35,7 +34,7 @@ public class Email {
             DOUBLE_ENTER +
             "Ваш тимчасовий пароль %s. Не забудьте змінити його у своєму профілі!" +
             DOUBLE_ENTER +
-            "Введіть свій обліковий запис <a href=\"http://localhost:8080/testing/signIn.jsp\">тут</a>." +
+            "Введіть свій обліковий запис <a href=\"http://localhost:8080/testing/signIn.jsp\">тут</a>.<br>" +
             FOOTER_UA;
 
     private Email() {}
