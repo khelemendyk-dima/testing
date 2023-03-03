@@ -36,7 +36,7 @@
             <div class="form-floating">
                 <input class="form-control" type="email" name="email" id="email"
                        placeholder="name@example.com" pattern="^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,6}$"
-                       value="${requestScope.email}" required>
+                       value="${requestScope.user.email}" required>
                 <label for="email"><fmt:message key="email"/></label>
                 <tags:contains error="${error}" value="email"/>
             </div>
