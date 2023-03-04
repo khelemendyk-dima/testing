@@ -19,6 +19,7 @@ public final class DomainActionsSets {
         anonymousUserActions.add(DEFAULT_ACTION);
         anonymousUserActions.add(SIGN_IN_ACTION);
         anonymousUserActions.add(SIGN_UP_ACTION);
+        anonymousUserActions.add(RESET_PASSWORD_ACTION);
     }
 
     static {

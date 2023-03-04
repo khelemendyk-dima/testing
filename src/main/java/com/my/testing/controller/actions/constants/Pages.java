@@ -23,5 +23,6 @@ public final class Pages {
     public static final String SOLVE_TEST_PAGE = "solveTest.jsp";
     public static final String VIEW_RESULT_PAGE = "viewResult.jsp";
     public static final String VIEW_RESULTS_PAGE = "viewResults.jsp";
+    public static final String RESET_PASSWORD_PAGE = "resetPassword.jsp";
     private Pages() {}
 }

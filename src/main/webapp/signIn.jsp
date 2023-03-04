@@ -56,6 +56,11 @@
             </div>
 
             <button class="w-100 btn btn-lg btn-primary my-4" type="submit"><fmt:message key="sign.in"/></button>
+
+            <p class="mt-1">
+                <fmt:message key="forgot.password"/>
+                <a href="resetPassword.jsp" class="link-dark"><fmt:message key="reset.password"/></a>
+            </p>
             <p class="mt-1">
                 <fmt:message key="no.account"/>
                 <a href="signUp.jsp" class="link-dark"><fmt:message key="sign.up"/></a>

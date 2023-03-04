@@ -23,6 +23,7 @@ public final class DomainPagesSets {
         anonymousUserPages.add(ERROR_PAGE);
         anonymousUserPages.add(SIGN_IN_PAGE);
         anonymousUserPages.add(SIGN_UP_PAGE);
+        anonymousUserPages.add(RESET_PASSWORD_PAGE);
     }
 
     static {

@@ -8,6 +8,7 @@ import com.my.testing.model.entities.enums.Role;
 import com.my.testing.model.services.UserService;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 import static com.my.testing.exceptions.constants.Message.*;
 import static com.my.testing.utils.ConvertorUtil.*;
@@ -17,6 +18,9 @@ import static com.my.testing.utils.ValidatorUtil.*;
 public class UserServiceImpl implements UserService {
 
     private final UserDAO userDAO;
+
+    private static final String SYMBOLS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    Random random = new Random();
 
     public UserServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -90,6 +94,27 @@ public class UserServiceImpl implements UserService {
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public String resetPassword(long userId) throws ServiceException {
+        String newPass = generatePassword();
+        try {
+            User user = User.builder().id(userId).password(encode(newPass)).build();
+            userDAO.updatePassword(user);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+        return newPass;
+    }
+
+    private String generatePassword() {
+        return IntStream.generate(() -> random.nextInt(SYMBOLS.length()))
+                .map(SYMBOLS::charAt)
+                .limit(17)
+                .collect(() -> new StringBuilder("1aA"), StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
     }
 
     @Override

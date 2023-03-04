@@ -38,6 +38,7 @@ public final class ActionFactory {
         ACTION_MAP.put(END_TEST_ACTION, new EndTestAction(APP_CONTEXT));
         ACTION_MAP.put(VIEW_RESULTS_ACTION, new ViewResultsAction(APP_CONTEXT));
         ACTION_MAP.put(TEST_TO_PDF_ACTION, new TestToPdfAction(APP_CONTEXT));
+        ACTION_MAP.put(RESET_PASSWORD_ACTION, new ResetPasswordAction(APP_CONTEXT));
     }
 
     private ActionFactory() {}

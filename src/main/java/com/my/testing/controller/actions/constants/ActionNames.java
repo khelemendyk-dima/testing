@@ -24,5 +24,6 @@ public final class ActionNames {
     public static final String END_TEST_ACTION = "end-test";
     public static final String VIEW_RESULTS_ACTION = "view-results";
     public static final String TEST_TO_PDF_ACTION = "test-pdf";
+    public static final String RESET_PASSWORD_ACTION = "reset-password";
     private ActionNames() {}
 }
