@@ -394,6 +394,23 @@ class UserServiceTest {
     }
 
     @Test
+    void testResetPassword() throws DAOException, ServiceException {
+        doNothing().when(userDAO).updatePassword(any());
+        String password = userService.resetPassword(ID_VALUE);
+        assertEquals(20, password.length());
+        assertEquals("1aA", password.substring(0,3));
+    }
+
+    @Test
+    void testSQLErrorResetPassword() throws DAOException {
+        Exception exception = new DAOException(new SQLException());
+        doThrow(exception).when(userDAO).updatePassword(any());
+        ServiceException e = assertThrows(ServiceException.class,
+                () -> userService.resetPassword(ID_VALUE));
+        assertEquals(e.getCause(), exception);
+    }
+
+    @Test
     void testSetRole() throws DAOException {
         doNothing().when(userDAO).setUserRole(anyString(), isA(Role.class));
         assertDoesNotThrow(() -> userService.setRole(EMAIL_VALUE, ROLE_ID_VALUE));
