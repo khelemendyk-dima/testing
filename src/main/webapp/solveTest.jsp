@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="${sessionScope.locale}">
+
 <head>
     <title>TestHub. ${requestScope.test.name}</title>
     <meta charset="UTF-8">
@@ -15,6 +16,7 @@
     <link rel="icon" href="img/favicon.ico">
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body>
 
 <jsp:include page="header.jsp"/>
@@ -26,7 +28,7 @@
             <h3 class="mb-4">${requestScope.test.name}</h3>
         </div>
         <div class="text-center fs-5 p-2" style="min-width: 120px;">
-            <p class="fw-bold">Time left</p>
+            <p class="fw-bold"><fmt:message key="time.left"/></p>
             <p id="timer"></p>
         </div>
     </div>
