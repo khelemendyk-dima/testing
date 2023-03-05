@@ -2,9 +2,17 @@ package com.my.testing.utils;
 
 import com.my.testing.exceptions.*;
 import com.my.testing.utils.constants.Regex;
+import lombok.*;
 
 import static com.my.testing.exceptions.constants.Message.*;
 
+/**
+ * Validator to validate emails, names, etc...
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ValidatorUtil {
 
     public static void validateEmail(String email) throws IncorrectFormatException {
@@ -57,13 +65,13 @@ public final class ValidatorUtil {
     }
 
     public static long checkId(String idString, ServiceException exception) throws ServiceException {
-        long eventId;
+        long id;
         try {
-            eventId = Long.parseLong(idString);
+            id = Long.parseLong(idString);
         } catch (NumberFormatException e) {
             throw exception;
         }
-        return eventId;
+        return id;
     }
 
     public static void checkPasswordMatching(String password, String confirmPassword) throws PasswordMatchingException {
@@ -75,10 +83,8 @@ public final class ValidatorUtil {
     public static void checkStrings(String ... strings) throws ServiceException {
         for (String string : strings) {
             if (string == null) {
-                throw new ServiceException(new NullPointerException());
+                throw new ServiceException(new NullPointerException("Enter valid values"));
             }
         }
     }
-
-    private ValidatorUtil() {}
 }

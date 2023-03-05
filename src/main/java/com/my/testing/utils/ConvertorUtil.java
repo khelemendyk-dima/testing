@@ -3,11 +3,22 @@ package com.my.testing.utils;
 import com.my.testing.dto.*;
 import com.my.testing.model.entities.*;
 import com.my.testing.model.entities.enums.*;
+import lombok.*;
 
+/**
+ * Converts DTO to Entities and vise versa
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ConvertorUtil {
 
-    private ConvertorUtil() {}
-
+    /**
+     * Converts UserDTO into User
+     * @param userDTO to convert
+     * @return User
+     */
     public static User convertDTOToUser(UserDTO userDTO) {
         return User.builder()
                 .id(userDTO.getId())
@@ -17,6 +28,11 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    /**
+     * Converts User into UserDTO
+     * @param user to convert
+     * @return UserDTO
+     */
     public static UserDTO convertUserToDTO(User user) {
         return UserDTO.builder()
                 .id(user.getId())
@@ -27,6 +43,11 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    /**
+     * Converts TestDTO into Test
+     * @param testDTO to convert
+     * @return Test
+     */
     public static Test convertDTOToTest(TestDTO testDTO) {
         return Test.builder()
                 .id(testDTO.getId())
@@ -37,6 +58,11 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    /**
+     * Converts Test into TestDTO
+     * @param test to convert
+     * @return TestDTO
+     */
     public static TestDTO convertTestToTDO(Test test) {
         return TestDTO.builder()
                 .id(test.getId())
@@ -48,6 +74,11 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    /**
+     * Converts QuestionDTO into Question
+     * @param questionDTO to convert
+     * @return Question
+     */
     public static Question convertDTOToQuestion(QuestionDTO questionDTO) {
         return Question.builder()
                 .id(questionDTO.getId())
@@ -56,6 +87,11 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    /**
+     * Converts Question into QuestionDTO
+     * @param question to convert
+     * @return QuestionDTO
+     */
     public static QuestionDTO convertQuestionToDTO(Question question) {
         return QuestionDTO.builder()
                 .id(question.getId())
@@ -64,6 +100,11 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    /**
+     * Converts AnswerDTO into Answer
+     * @param answerDTO to convert
+     * @return Answer
+     */
     public static Answer convertDTOToAnswer(AnswerDTO answerDTO) {
         return Answer.builder()
                 .id(answerDTO.getId())
@@ -73,6 +114,11 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    /**
+     * Converts Answer into AnswerDTO
+     * @param answer to convert
+     * @return AnswerDTO
+     */
     public static AnswerDTO convertAnswerToDTO(Answer answer) {
         return AnswerDTO.builder()
                 .id(answer.getId())
@@ -82,6 +128,11 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    /**
+     * Converts TestResultDTO into TestResult
+     * @param testResultDTO to convert
+     * @return TestResult
+     */
     public static TestResult convertDTOToTestResult(TestResultDTO testResultDTO) {
         return TestResult.builder()
                 .id(testResultDTO.getId())
@@ -92,6 +143,11 @@ public final class ConvertorUtil {
                 .build();
     }
 
+    /**
+     * Converts TestResult into TestResultDTO
+     * @param testResult to convert
+     * @return TestResultDTO
+     */
     public static TestResultDTO convertTestResultToDTO(TestResult testResult) {
         return TestResultDTO.builder()
                 .id(testResult.getId())

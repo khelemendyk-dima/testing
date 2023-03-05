@@ -1,20 +1,20 @@
 package com.my.testing.utils;
 
 import com.my.testing.exceptions.CaptchaException;
-import jakarta.json.Json;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonReader;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import jakarta.json.*;
+import org.apache.logging.log4j.*;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLException;
+import javax.net.ssl.*;
 import java.io.*;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.Properties;
 
+/**
+ * Validate Google ReCaptcha
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 public class CaptchaUtil {
     private static final Logger logger = LogManager.getLogger(CaptchaUtil.class);
     private final String method;
@@ -23,6 +23,9 @@ public class CaptchaUtil {
     private final String userAgent;
     private final String acceptLanguage;
 
+    /**
+     * @param properties should contain all required fields to properly configure
+     */
     public CaptchaUtil(Properties properties) {
         method = properties.getProperty("captcha.method");
         captchaUrl = properties.getProperty("captcha.url");
@@ -31,6 +34,12 @@ public class CaptchaUtil {
         acceptLanguage = properties.getProperty("accept-language");
     }
 
+    /**
+     * Checks if user is human. Setups and connects to Google ReCaptcha services. Sends user's captcha result.
+     * Gets response and checks if it matches. Disable captcha if Google is down.
+     * @param gRecaptchaResponse get it from controller
+     * @throws CaptchaException if captcha is not valid
+     */
     public void verify(String gRecaptchaResponse) throws CaptchaException {
         try {
             URL url = new URL(captchaUrl);
