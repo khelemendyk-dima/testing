@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
@@ -69,6 +68,7 @@
 
             <button class="w-100 btn btn-lg btn-primary mb-4 mt-4" type="submit"><fmt:message key="submit"/></button>
         </form>
+
         <p class="m-0 mb-3">
             <a href="changePassword.jsp" class="link-dark"><fmt:message key="change.pass"/></a>
         </p>

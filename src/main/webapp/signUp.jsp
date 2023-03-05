@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
@@ -33,6 +32,7 @@
             <c:set var="error" value="${requestScope.error}"/>
 
             <h3 class="mb-4"><fmt:message key="sign.up.title"/></h3>
+
             <div class="form-floating">
                 <input class="form-control" type="email" name="email" id="email"
                        placeholder="name@example.com" pattern="^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,6}$"
@@ -40,6 +40,7 @@
                 <label for="email"><fmt:message key="email"/></label>
                 <tags:contains error="${error}" value="email"/>
             </div>
+
             <div class="form-floating mt-2">
                 <input class="form-control" type="text" name="name" id="name"
                        placeholder="Name" pattern="^[A-Za-zА-ЩЬЮЯҐІЇЄа-щьюяґіїє'\- ]{1,30}"
@@ -48,6 +49,7 @@
                 <label for="name"><fmt:message key="name"/></label>
                 <tags:contains error="${error}" value="name"/>
             </div>
+
             <div class="form-floating mt-2">
                 <input class="form-control" type="text" name="surname" id="surname"
                        placeholder="Surname" pattern="^[A-Za-zА-ЩЬЮЯҐІЇЄа-щьюяґіїє'\- ]{1,30}"
@@ -56,6 +58,7 @@
                 <label for="surname"><fmt:message key="surname"/></label>
                 <tags:contains error="${error}" value="surname"/>
             </div>
+
             <div class="form-floating mt-2">
                 <input class="form-control" type="password" name="password" id="password"
                        placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$"
@@ -63,6 +66,7 @@
                 <label for="password"><fmt:message key="password"/></label>
                 <tags:contains error="${error}" value="pass"/>
             </div>
+
             <div class="form-floating mt-2">
                 <input class="form-control" type="password" name="confirm-password" id="confirm-password"
                        placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$"
@@ -83,12 +87,12 @@
 
             <button class="w-100 btn btn-lg btn-primary mb-4 mt-4" type="submit"><fmt:message key="sign.up"/></button>
         </form>
+
         <p class="m-0 mb-3">
             <fmt:message key="have.account"/>
             <a href="signIn.jsp" class="link-dark"><fmt:message key="sign.in"/></a>
         </p>
     </div>
-
 </div>
 
 <jsp:include page="footer.jsp"/>

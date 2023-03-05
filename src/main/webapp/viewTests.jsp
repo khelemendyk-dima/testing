@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="resources"/>
 
@@ -43,6 +42,7 @@
                        value="${param.name}">
                 <label for="name"><fmt:message key="test.name"/></label>
             </div>
+
             <div class="d-flex justify-content-between">
                 <div class="flex-column">
                     <label>
@@ -71,6 +71,7 @@
                             </option>
                         </select>
                     </label>
+
                     <label>
                         <select name="sortField" class="form-select mt-2">
                             <option value=""><fmt:message key="sort.field"/></option>
@@ -88,6 +89,7 @@
                             </option>
                         </select>
                     </label>
+
                     <label>
                         <select name="order" class="form-select mt-2">
                             <option value="ASC" ${param.order eq "ASC" ? "selected" : ""}>
