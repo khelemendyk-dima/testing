@@ -2,9 +2,16 @@ package com.my.testing.dto;
 
 import lombok.*;
 
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
 
+/**
+ * TestDTO class. Fields are similar to Test entity, except subject and difficulty
+ * which is string value of concrete enum
+ * Use TestDTO.builder().fieldName(fieldValue).build() to create an instance
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 @Data
 @Builder
 public class TestDTO implements Serializable {

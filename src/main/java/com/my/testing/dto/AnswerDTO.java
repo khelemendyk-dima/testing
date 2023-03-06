@@ -4,6 +4,13 @@ import lombok.*;
 
 import java.io.*;
 
+/**
+ * AnswerDTO class.
+ * Use AnswerDTO.builder().fieldName(fieldValue).build() to create an instance
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 @Data
 @Builder
 public class AnswerDTO implements Serializable {

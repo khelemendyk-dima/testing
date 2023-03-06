@@ -1,11 +1,16 @@
 package com.my.testing.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
 
+/**
+ * QuestionDTO class.
+ * Use QuestionDTO.builder().fieldName(fieldValue).build() to create an instance
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 @Data
 @Builder
 public class QuestionDTO implements Serializable {

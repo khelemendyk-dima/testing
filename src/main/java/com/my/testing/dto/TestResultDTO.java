@@ -4,6 +4,14 @@ import lombok.*;
 
 import java.io.*;
 
+
+/**
+ * TestResultDTO class.
+ * Use TestResultDTO.builder().fieldName(fieldValue).build() to create an instance
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 @Data
 @Builder
 public class TestResultDTO implements Serializable {

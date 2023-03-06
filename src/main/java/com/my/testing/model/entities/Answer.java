@@ -4,6 +4,13 @@ import lombok.*;
 
 import java.io.*;
 
+/**
+ * Answer entity class. Matches table 'answer' in database.
+ * Use Answer.builder().fieldName(fieldValue).build() to create an instance
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 @Data
 @Builder
 public class Answer implements Serializable {
