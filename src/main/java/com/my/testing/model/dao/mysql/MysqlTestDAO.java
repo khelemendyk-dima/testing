@@ -3,6 +3,7 @@ package com.my.testing.model.dao.mysql;
 import com.my.testing.exceptions.DAOException;
 import com.my.testing.model.dao.TestDAO;
 import com.my.testing.model.entities.Test;
+import org.apache.logging.log4j.*;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -11,12 +12,27 @@ import java.util.*;
 import static com.my.testing.model.dao.mysql.constants.SQLFields.*;
 import static com.my.testing.model.dao.mysql.constants.TestSQLQueries.*;
 
+/**
+ * Test DAO class for MySQL database. Matches 'test' table in database.
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 public class MysqlTestDAO implements TestDAO {
+    private static final Logger logger = LogManager.getLogger(MysqlTestDAO.class);
+    /** An instance of datasource to provide connection to database */
     private final DataSource dataSource;
 
     public MysqlTestDAO(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+
+    /**
+     * Obtains instance of Test from database by id
+     * @param id value of id field in database
+     * @return Optional.ofNullable test is null if there is no test
+     * @throws DAOException is wrapper for SQLException
+     */
     @Override
     public Optional<Test> getById(long id) throws DAOException {
         Test test = null;
@@ -30,12 +46,19 @@ public class MysqlTestDAO implements TestDAO {
                 }
             }
         } catch (SQLException e) {
+            logger.error(String.format("Couldn't find test with id=%d because of %s", id, e.getMessage()));
             throw new DAOException(e);
         }
 
         return Optional.ofNullable(test);
     }
 
+    /**
+     * Obtains sorted and limited list of tests from database
+     * @param query should contain filters, order, limits for pagination
+     * @return tests list that matches demands. Will be empty if there are no tests
+     * @throws DAOException is wrapper for SQLException
+     */
     @Override
     public List<Test> getSorted(String query) throws DAOException {
         List<Test> tests = new ArrayList<>();
@@ -46,12 +69,19 @@ public class MysqlTestDAO implements TestDAO {
                 tests.add(createTest(resultSet));
             }
         } catch (SQLException e) {
+            logger.error(String.format("Couldn't get sorted list of tests because of %s", e.getMessage()));
             throw new DAOException(e);
         }
 
         return tests;
     }
 
+    /**
+     * Obtains number of all records matching filter
+     * @param filter should contain 'where' to specify query
+     * @return number of records
+     * @throws DAOException is wrapper for SQLException
+     */
     @Override
     public int getNumberOfRecords(String filter) throws DAOException {
         int numberOfRecords = 0;
@@ -62,12 +92,18 @@ public class MysqlTestDAO implements TestDAO {
                 numberOfRecords = resultSet.getInt(NUMBER_OF_RECORDS);
             }
         } catch (SQLException e) {
+            logger.error(String.format("Couldn't get number of tests because of %s", e.getMessage()));
             throw new DAOException(e);
         }
 
         return numberOfRecords;
     }
 
+    /**
+     * Obtains list of all tests from database
+     * @return tests list
+     * @throws DAOException is wrapper for SQLException
+     */
     @Override
     public List<Test> getAll() throws DAOException {
         List<Test> tests = new ArrayList<>();
@@ -78,12 +114,17 @@ public class MysqlTestDAO implements TestDAO {
                 tests.add(createTest(resultSet));
             }
         } catch (SQLException e) {
+            logger.error(String.format("Couldn't get list of all tests because of %s", e.getMessage()));
             throw new DAOException(e);
         }
         return tests;
     }
 
-    @SuppressWarnings("DuplicatedCode")
+    /**
+     * Inserts new test to database
+     * @param test concrete entity in implementations
+     * @throws DAOException is wrapper for SQLException
+     */
     @Override
     public void add(Test test) throws DAOException {
         try (Connection connection = dataSource.getConnection();
@@ -95,10 +136,16 @@ public class MysqlTestDAO implements TestDAO {
                 test.setId(resultSet.getLong(1));
             }
         } catch (SQLException e) {
+            logger.error(String.format("Couldn't add new test because of %s", e.getMessage()));
             throw new DAOException(e);
         }
     }
 
+    /**
+     * Updates test
+     * @param test should contain all necessary fields
+     * @throws DAOException is wrapper for SQLException
+     */
     @Override
     public void update(Test test) throws DAOException {
         try (Connection connection = dataSource.getConnection();
@@ -106,10 +153,16 @@ public class MysqlTestDAO implements TestDAO {
             setStatementFieldsForUpdateMethod(test, preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
+            logger.error(String.format("Couldn't update test with id=%s because of %s", test.getId(), e.getMessage()));
             throw new DAOException(e);
         }
     }
 
+    /**
+     * Deletes test record from database
+     * @param id value of id field in database
+     * @throws DAOException is wrapper for SQLException
+     */
     @Override
     public void delete(long id) throws DAOException {
         try (Connection connection = dataSource.getConnection();
@@ -118,10 +171,17 @@ public class MysqlTestDAO implements TestDAO {
             preparedStatement.setLong(++k, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
+            logger.error(String.format("Couldn't delete test with id=%d because of %s", id, e.getMessage()));
             throw new DAOException(e);
         }
     }
 
+    /**
+     * Creates test entity from result set
+     * @param resultSet set that contains necessary data
+     * @return Test entity
+     * @throws SQLException if something go wrong
+     */
     private Test createTest(ResultSet resultSet) throws SQLException {
         return Test.builder()
                 .id(resultSet.getLong(ID))
