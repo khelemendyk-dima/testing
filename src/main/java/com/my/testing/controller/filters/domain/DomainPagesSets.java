@@ -1,15 +1,22 @@
 package com.my.testing.controller.filters.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static com.my.testing.controller.actions.constants.Pages.*;
 
+/**
+ * Contains pages sets for anonymous user and different roles logged user. Defines if user has access to the page
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DomainPagesSets {
-    private DomainPagesSets() {}
-
     @Getter private static final Set<String> anonymousUserPages = new HashSet<>();
     @Getter private static final Set<String> blockedUserPages = new HashSet<>();
     @Getter private static final Set<String> studentPages = new HashSet<>();

@@ -16,6 +16,13 @@ import static com.my.testing.controller.actions.ActionUtil.getActionToRedirect;
 import static com.my.testing.controller.actions.constants.ActionNames.SEARCH_TEST_ACTION;
 import static com.my.testing.controller.actions.constants.Parameters.*;
 
+/**
+ * This is TestToPdfAction class. Accessible by admin. Allows to download test with correct answers in the end.
+ * Implements PRG pattern
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 public class TestToPdfAction implements Action {
     private final Logger logger = LogManager.getLogger(TestToPdfAction.class);
     private final TestService testService;
@@ -23,6 +30,9 @@ public class TestToPdfAction implements Action {
     private final AnswerService answerService;
     private final PdfUtil pdfUtil;
 
+    /**
+     * @param appContext contains TestService, QuestionService, AnswerService, PDFUtil instances to use in action
+     */
     public TestToPdfAction(AppContext appContext) {
         testService = appContext.getTestService();
         questionService = appContext.getQuestionService();
@@ -30,6 +40,13 @@ public class TestToPdfAction implements Action {
         pdfUtil = appContext.getPdfUtil();
     }
 
+    /**
+     * Gets test's id from request. Then gets test, questions and answers via service.
+     * Creates PDF document and sets it to response
+     *
+     * @param request to get test's id
+     * @param response to set PDF document there
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String testId = request.getParameter(TEST_ID);
@@ -44,6 +61,13 @@ public class TestToPdfAction implements Action {
         return getActionToRedirect(SEARCH_TEST_ACTION, ID, testId);
     }
 
+    /**
+     * Sets test in response to download. Configure response to download PDF document
+     *
+     * @param testId to name the document
+     * @param response to set test there
+     * @param output output stream that contains PDF document
+     */
     private void setResponse(String testId, HttpServletResponse response, ByteArrayOutputStream output) {
         response.setContentType("application/pdf");
         response.setContentLength(output.size());

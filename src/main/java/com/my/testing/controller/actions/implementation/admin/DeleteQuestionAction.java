@@ -3,38 +3,40 @@ package com.my.testing.controller.actions.implementation.admin;
 import com.my.testing.controller.actions.Action;
 import com.my.testing.controller.context.AppContext;
 import com.my.testing.exceptions.ServiceException;
-import com.my.testing.model.services.AnswerService;
-import com.my.testing.model.services.QuestionService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.my.testing.model.services.*;
+import jakarta.servlet.http.*;
+import org.apache.logging.log4j.*;
 
 import static com.my.testing.controller.actions.ActionUtil.*;
-import static com.my.testing.controller.actions.constants.ActionNames.DELETE_QUESTION_ACTION;
+import static com.my.testing.controller.actions.constants.ActionNames.SEARCH_TEST_ACTION;
 import static com.my.testing.controller.actions.constants.Parameters.*;
 
+/**
+ * This is DeleteQuestionAction class. Accessible by admin. Allows to delete question.
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 public class DeleteQuestionAction implements Action {
     private static final Logger logger = LogManager.getLogger(DeleteQuestionAction.class);
     private final QuestionService questionService;
     private final AnswerService answerService;
 
+    /**
+     * @param appContext contains QuestionService, AnswerService instances to use in action
+     */
     public DeleteQuestionAction(AppContext appContext) {
         questionService = appContext.getQuestionService();
         answerService = appContext.getAnswerService();
     }
 
+    /**
+     * Gets question id from request and deletes them with answers via services
+     * @param request to get question id
+     * @return path to redirect
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        return isPostMethod(request) ? executePost(request) : executeGet(request);
-    }
-
-    private String executeGet(HttpServletRequest request) {
-        return getPath(request);
-    }
-
-    private String executePost(HttpServletRequest request) {
-        String path = "controller?action=search-test&id=" + request.getParameter(TEST_ID);
         String questionId = request.getParameter(QUESTION_ID);
 
         try {
@@ -44,8 +46,6 @@ public class DeleteQuestionAction implements Action {
             logger.error("Couldn't delete question - no such question");
         }
 
-        request.getSession().setAttribute(CURRENT_PATH, path);
-
-        return getActionToRedirect(DELETE_QUESTION_ACTION);
+        return getActionToRedirect(SEARCH_TEST_ACTION, ID, request.getParameter(TEST_ID));
     }
 }

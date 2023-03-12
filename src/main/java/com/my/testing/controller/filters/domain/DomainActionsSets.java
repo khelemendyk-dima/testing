@@ -1,15 +1,19 @@
 package com.my.testing.controller.filters.domain;
 
-import lombok.Getter;
+import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static com.my.testing.controller.actions.constants.ActionNames.*;
 
+/**
+ * Contains action sets for anonymous user and different roles logged users. Defines if user has access to the action
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DomainActionsSets {
-    private DomainActionsSets() {}
-    
     @Getter private static final Set<String> anonymousUserActions = new HashSet<>();
     @Getter private static final Set<String> blockedUserActions = new HashSet<>();
     @Getter private static final Set<String> studentActions = new HashSet<>();

@@ -2,24 +2,26 @@ package com.my.testing.controller.context;
 
 import com.my.testing.model.connection.MyDataSource;
 import com.my.testing.model.dao.DAOFactory;
-import com.my.testing.utils.CaptchaUtil;
-import com.my.testing.utils.EmailSenderUtil;
-import com.my.testing.utils.PdfUtil;
+import com.my.testing.utils.*;
 import jakarta.servlet.ServletContext;
 import lombok.Getter;
 import com.my.testing.model.services.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 import javax.sql.DataSource;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * AppContext class. Contains all required to correct application work objects
+ *
+ * @author Khelemendyk Dmytro
+ * @version 1.0
+ */
 @Getter
 public class AppContext {
     private static final Logger logger = LogManager.getLogger(AppContext.class);
     private static AppContext appContext;
-
     private final UserService userService;
     private final TestService testService;
     private final QuestionService questionService;
@@ -44,21 +46,31 @@ public class AppContext {
         testResultService = serviceFactory.getTestResultService();
     }
 
+    /**
+     * @return instance of AppContext
+     */
     public static AppContext getAppContext() {
         return appContext;
     }
 
+    /**
+     * Creates instance of AppContext to user in Actions. Configure all required classes. Loads properties
+     * @param servletContext to user relative address in classes
+     * @param propertiesFile to configure DataSource, EmailSender and Captcha
+     */
     public static void createAppContext(ServletContext servletContext, String propertiesFile) {
         appContext = new AppContext(servletContext, propertiesFile);
     }
 
     private static Properties getProperties(String propertiesFile) {
         Properties properties = new Properties();
+
         try (InputStream resource = AppContext.class.getClassLoader().getResourceAsStream(propertiesFile)){
             properties.load(resource);
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error(String.format("AppContext couldn't read properties because of %s", e.getMessage()));
         }
+
         return properties;
     }
 }
